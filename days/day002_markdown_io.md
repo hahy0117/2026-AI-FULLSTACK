@@ -5,7 +5,7 @@ day002
 
 ---
 ## part001
-
+-git pull origin main
 
 
 
