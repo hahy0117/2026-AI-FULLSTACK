@@ -14,3 +14,7 @@ day002
 ---
 ## part002
 - TOD02 : JAVA
+
+1) 자바 프로젝트 만들기: bankproject
+2) bankproject 안에 패키지 만들기
+    com.the703.v1
