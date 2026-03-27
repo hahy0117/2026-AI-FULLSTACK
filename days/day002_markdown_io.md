@@ -7,6 +7,8 @@ day002
 ## part001
 -git pull origin main
 
+1.git pull origin main
+2.markdown
 
 
 ---
