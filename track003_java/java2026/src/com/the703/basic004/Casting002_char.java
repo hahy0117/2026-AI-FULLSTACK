@@ -22,7 +22,8 @@ public class Casting002_char {
 				char q = 'A';
 				char a = (char) (q +32); //char(65/2byte) + int(4byte)
 				System.out.println('A' +"\t"+(int)'a'); //65 97
-				System.out.println(q +"를 소문자로 변환시킬려면"+ a);
+				System.out.println(q +"를 소문자로 변환시킬려면"+ a); // 97(a) = 65(A)+32
+				
 				
 	}
 
