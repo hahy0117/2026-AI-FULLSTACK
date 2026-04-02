@@ -13,7 +13,9 @@ public class OperatorEx002 {
 		System.out.println( ch>=0 && ch<=9);
 		//q1-4 char형 변수 ch가 영문자(대문자 또는 소문자) 일때   true인 조건식
 		System.out.println( ch>= 'A' && ch<= 'Z' || ch>='a' && ch <= 'z');
-		
+		//A  65
+		//B  66
+		//C  67
 		
 		
 		
