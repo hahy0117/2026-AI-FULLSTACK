@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <style>
+        /* 선택자:*태그(전체) p(태그) id(아이디) class(클래스)*/
+        *{ margin:0; padding:0;}
+        body {
+            font-family: 'Segoe UI'; background-color: #f9f9f9;
+        }
+        h1{
+            text-align: center;
+            color: #333;
+        }
+        .notice{
+            text-align: center;
+            width:350px;
+            border:1px solid #ccc;
+            padding:15px;
+            margin:20px auto;
+        }
+        .notice h2{
+            font-size: 18px;
+            color: #444;
+        }
+        #urgent{
+            background-color: #ffe0e0;
+            transition: all 2s;
+        }
+        #urgent:hover{
+          background-color: red;
+          color: rgb(218, 228, 83);
+        }
+        .notice img{
+            width:80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .notice img:hover{
+            transform: rotateY(180deg);
+            transition: all 2s;
+        }
+     
+    </style>
+</head>
+<body>
+    <div>
+        <h1>공지사항</h1>
+        <div class="notice">
+            <p><img src="./img/six.png" alt="사진"/></p>
+            <h2>일반공지</h2>
+            <p>다음 주 월요일은 정기 점검이 있습니다.</p>
+        </div>
+        <div  class="notice" id="urgent">
+            <h2>긴급공지</h2>
+            <p>오늘 오후 서버 점검으로 서비스가 일시 중단됩니다.</p>
+        </div>
+    </div>
+    
+</body>
+</html>
