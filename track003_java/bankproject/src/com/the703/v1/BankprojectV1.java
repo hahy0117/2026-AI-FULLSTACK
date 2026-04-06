@@ -58,8 +58,37 @@ public class BankprojectV1 {
 				}
 			} else if (menu == 4) {
 				System.out.println("4 출금기능입니다");
+				System.out.println("ID를 입력하세요>");
+				tid=scanner.nextInt();
+				System.out.println("pass를 입력하세요>");
+				tpass=scanner.nextInt();
+				
+				if(id==tid && pass==tpass) {
+					System.out.println("출금할 금액 입력>");
+					tbalance=scanner.nextInt();
+					
+					if(balance>=tbalance) {
+						balance=balance-tbalance;
+						System.out.println("출금 완료");
+						System.out.println("잔액은:"+balance);
+					}else {
+						System.out.println("잔액 부족 >다시 입력해주세요");
+					}
+				}
+				
 			} else if (menu == 5) {
 				System.out.println("5 삭제기능입니다");
+				System.out.println("ID를 입력하세요>");
+				tid=scanner.nextInt();
+				System.out.println("pass를 입력하세요>");
+				tpass=scanner.nextInt();
+				if(id==tid && pass==tpass) {
+					tid=-1;tpass=-1;balance=-1;id=-1;pass=-1;
+					System.out.println("삭제완료>");
+				}else {
+					System.out.println("아이디 비번을 다시 확인해주세요");
+				}
+				
 			} else if (menu == 9) {
 				System.out.println("종료");
 				break;
