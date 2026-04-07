@@ -27,8 +27,9 @@ public class BreakContinue {
 			System.out.println(i);
 			
 			}
-		scanner scanner=new Scanner(System.in);
+		Scanner scanner=new Scanner(System.in);
 		//ver-3
+		int a;
 		for(;;) {
 			System.out.println("1입력");
 			a=scanner.nextInt();

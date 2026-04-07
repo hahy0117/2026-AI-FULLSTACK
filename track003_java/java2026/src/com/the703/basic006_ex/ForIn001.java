@@ -5,6 +5,9 @@ import java.util.Scanner;
 public class ForIn001 {
 
 	public static void main(String[] args) {
+		//변수
+		//자료형: 기본형/참조형(string)
+		//기본형-정수: byte<short/char<int<long /실수:float<double
 		Scanner scanner= new Scanner(System.in);
 		int kor=0,eng=-1,math=-1,total=-1;
 		double avg=0;
@@ -15,14 +18,14 @@ public class ForIn001 {
 		for(;;) {
 			System.out.println("국어점수입력>");
 			kor=scanner.nextInt();
-			if(kor>0 && kor<100) {
+			if(kor>0 && kor<100) { //if( !(kor>=0 && kor<=100)){//2) kor=-1 continue
 				break;
 			}
 		}
 		for(;;) {
 			System.out.println("영어점수입력>");
 			eng=scanner.nextInt();
-			if(eng>0 && eng<100) {
+			if(eng>0 && eng<100) { //if( !(eng>=0 && eng<=100)){
 				break;
 			}
 		}
@@ -61,7 +64,9 @@ public class ForIn001 {
 		System.out.println("===============================================================");
 		System.out.printf("%s\t%d\t%d\t%d\t%d\t%.2f\t%s\t%s\t%s\t",sh,kor,math,eng,total,avg,pass,lev,scholar);
 			
-			
+		//for(;;){무한반복}
+		//(국어점수의 범위가 아니라면){국어점수 입력>100} 입력받기
+		//건너뛰기 continue   
 		
 		
 		
