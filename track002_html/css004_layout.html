@@ -7,7 +7,7 @@
     <style>
         *{margin: 0; padding:0;}
         body{   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-                background-image:linear-gradient(135deg,rgb(235, 150, 150),rgb(120, 241, 104));
+                background-image:linear-gradient(135deg,rgb(255, 248, 248),rgb(226, 233, 226));
         }
         h3{
             border-left: 10px solid red;
@@ -18,7 +18,7 @@
         .container{
             width:50%;
             margin:50px auto;
-            background-color: rgb(240, 166, 18);
+            background-color: rgb(158, 158, 137);
             padding:20px;
             box-shadow: 0 0 10px rgba(185, 91, 91, 0.1);
         }
@@ -38,6 +38,41 @@
             position:absolute;
             bottom: 0;
            right :10px;
+        }
+        .di p.item{
+            background-color: rgb(110, 96, 231);
+            text-align: center;
+            
+        }
+        .di p.item a{
+            color: rgb(199, 209, 218);
+            display: block;            
+            background-color: rgb(230, 157, 220);
+        }
+        /*a(인라인) display(-인라인을 블록)*/
+        .di p.item a:last-child{
+            display:none;
+        }
+        /* display:none 화면상에 안보이게 숨기기 (h태그에서 :영역자체가 사라진다)*/
+
+        .d1{
+            background-color: rgb(255, 238, 89);
+            text-align: center;
+            margin:10px 0;
+            padding:10px;
+        }
+        .d1 li{
+            background-color: rgb(126, 240, 240);
+            display:inline; 
+        }/* display:inline; 블록을 인라인으로 -한줄로배치*/
+        .d2{
+            background-color: #ffb8f1;
+            text-align: center;
+        }
+        .d2 li{
+            background-color: #f4ffb8;
+            display: inline-block;
+            width:100px;           
         }
     </style>
 </head>
@@ -77,5 +112,28 @@
             </p>
             <p>부모: relative(공간확보)/자식:(원하는 위치 배치)-좌표</p>
         </div>
+
+        <div class="container di">
+            <d3>5.배치(3)-display</d3>
+            <p>속성바꾸기:display:block,inline,inline-block,none</p>
+            <p>배치-박스들이 어떻게 놓일지 정하는 규칙(정리도우미) dispaly:flex</p>
+            <p class="item"><a href="http://www.naver.com">NAVER</a> <!--display:block [box]-->
+            <a href="http://www.daum.com">DAUM</a> <!--display:none [숨기기]-->
+            </p>
+            <!--display:inline[콘텐츠-width 0]-->
+            <ul class="d1">
+                <li>APPLE</li>
+                <li>BANANA</li>
+                <li>COCONUT</li>
+            </ul>
+            <ul class="d2">
+                <li>APPLE</li>
+                <li>BANANA</li>
+                <li>COCONUT</li>
+            </ul>
+
+        </div>
+
+
 </body>
 </html>
