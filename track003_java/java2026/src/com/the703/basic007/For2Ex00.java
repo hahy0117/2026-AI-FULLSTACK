@@ -22,9 +22,24 @@ public class For2Ex00 {
 				}
 				
 		}i++;
-		
+		}
+		System.out.println();
 		
 		//do while
+			
+		int i3 = 1;
+
+	      do {
+	    	  int i4=1;
+	          do  {
+	              if(i3 + i4 == 6) {
+	                  System.out.println(i3 + "+" + i4 + "=" + 6);
+	              }i4++;
+	          }while(i4<= 5);
+	          i3++;
+	      } while(i3 <= 6);    		
+		//do while
+		
 //		int i3=1;
 //		do {
 //			for(int i4=1;i4<=6;i4++) {
@@ -40,7 +55,7 @@ public class For2Ex00 {
 		
 		
 
-	}
+	
 
-}
+	}
 }
