@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.mynav{
+    background:linear-gradient(135deg ,rgb(240, 236, 239),rgb(233, 115, 186)) ;
+}
+
+.myhidden{
+    position:relative;
+    left:-9999px;
+    width:1px;
+    height: 1px;
+    border:0;
+    white-space:nowrap;
+    clip:rect(0,0,0,0);/*요소를 잘라서 시각적으로 완전히 숨김- 구형브라우저 호환*/
+}
+#demo{
+    height: 300px;
+    overflow: hidden;
+    
+}
+#demo.img{
+    object-fit: contain;
+}
