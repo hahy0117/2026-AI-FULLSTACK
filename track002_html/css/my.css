@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .mynav{
-    background:linear-gradient(135deg ,rgb(240, 236, 239),rgb(233, 115, 186)) ;
+    background:linear-gradient(135deg ,rgb(230, 231, 216),rgb(225, 248, 121)) ;
 }
 
 .myhidden{
@@ -20,4 +20,20 @@
 }
 #demo.img{
     object-fit: contain;
+}
+.mybg{
+    background-color: transparent;
+}
+body{
+    background-image: url(../img/lilyanicreates-starry-10089689.png);
+    background-repeat:no-repeat;
+    background-size:cover ;
+    background-position: bottom;
+    background-attachment: fixed;
+}
+h3{
+    transition: all 0.3s;
+}
+h3:hover{
+    transform: translateY(-10px);
 }

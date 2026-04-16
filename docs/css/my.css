@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.mynav{
+    background:linear-gradient(135deg ,rgb(230, 231, 216),rgb(225, 248, 121)) ;
+}
+
+.myhidden{
+    position:relative;
+    left:-9999px;
+    width:1px;
+    height: 1px;
+    border:0;
+    white-space:nowrap;
+    clip:rect(0,0,0,0);/*요소를 잘라서 시각적으로 완전히 숨김- 구형브라우저 호환*/
+}
+#demo{
+    height: 300px;
+    overflow: hidden;
+    
+}
+#demo.img{
+    object-fit: contain;
+}
+.mybg{
+    background-color: transparent;
+}
+body{
+    background-image: url(../img/lilyanicreates-starry-10089689.png);
+    background-repeat:no-repeat;
+    background-size:cover ;
+    background-position: bottom;
+    background-attachment: fixed;
+}
+h3{
+    transition: all 0.3s;
+}
+h3:hover{
+    transform: translateY(-10px);
+}
