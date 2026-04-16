@@ -8,7 +8,7 @@ public class Arr1Ex010 {
 		int num=0;
 		
 		for(int i=0; i<datas.length;i++) {
-			i
+			
 			
 		}
 
