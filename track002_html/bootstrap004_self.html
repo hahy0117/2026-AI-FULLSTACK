@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>열정적인 개발자</title>
+    <title>자기소개 페이지</title>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
@@ -18,28 +18,40 @@
     <header>
         <h1 class="myhidden">하혜원</h1>
 
-        <nav class="mynav navbar navbar-expand-sm navbar-info bg-warning">
+        <nav class=" navbar navbar-expand-sm navbar-info ">
             <h2 class="myhidden">주메뉴</h2>
             <div class="container-fluid">
-                <a class="navbar-brand" href="javascript:void(0)">hyewon</a>
+                
+                <a class="navbar-brand text-white" href="javascript:void(0)">hyewon</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="mynavbar">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">About Me</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">Gallery</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">Contact Me</a>
-                        </li>
+                    <div class="dropdown ms-auto" >
+                    <button type="button" class="btn btn-outline-warning dropdown-toggle" data-bs-toggle="dropdown">
+                        더보기
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Portfolio</a></li>
+                        <li><a class="dropdown-item" href="#">About Me</a></li>
+                        <li><a class="dropdown-item" href="#">Gallery</a></li>
+                        <li><a class="dropdown-item" href="#">Contact Me</a></li>
                     </ul>
+                </div>
+                    <!-- <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white  " href="javascript:void(0)">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="javascript:void(0)">About Me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="javascript:void(0)">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="javascript:void(0)">Contact Me</a>
+                        </li>
+                    </ul> -->
 
                 </div>
             </div>
@@ -47,65 +59,32 @@
 
     </header>
     <!--visual-->
-    <section>
-        <h3 class="myhidden">홍보</h3>
-        <!-- Carousel -->
-        <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-            <!-- Indicators/dots -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-            </div>
-
-            <!-- The slideshow/carousel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="./img/portfolio1.jpg" alt="Los Angeles" class="d-block w-25 mx-auto">
-                </div>
-                <div class="carousel-item">
-                    <img src="./img/portfolio2.jpg" alt="Chicago" class="d-block w-25 mx-auto">
-                </div>
-                <div class="carousel-item">
-                    <img src="./img/portfolio3.jpg" alt="New York" class="d-block w-25 mx-auto">
-                </div>
-            </div>
-
-            <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-    </section>
+    
     <!--info-->
-    <section class="bg-white">
+    <section class="">
         <div class="container">
-            <h3 class="text-center">About me</h3>
+            <h3 class="text-center text-white">About me</h3>
 
             <div class="row">
                 <div class="col-sm-4 p-5">
                     <p><img src="./img/one.png" alt="열정적인 개발자 " class="d-block w-25 mx-auto"></p>
-                    <h4>하혜원</h4>
+                    <h4 class="text-white">하혜원</h4>
 
                     <ul>
-                        <li>혜원 깃허브</li>
-                        <li><a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" title="깃허브 바로가기"
-                                target="_blank">깃허브 포트폴리오</a></li>
+                        <li class="text-white">혜원 깃허브</li>
+                        <li class="text-white"><a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git"
+                                title="깃허브 바로가기" target="_blank">깃허브 포트폴리오</a></li>
                     </ul>
                 </div>
 
 
                 <div class="col-sm-4 p-5 ">
-                    <h4>Education</h4>
+                    <h4 class="text-white">Education</h4>
                     <ul>
-                        <li>AI활용 풀스택(프론트엔드,백엔드)</li>
+                        <li class="text-white">AI활용 풀스택(프론트엔드,백엔드)</li>
                     </ul>
 
-                    <h4>KeyWord</h4>
+                    <h4 class="text-white">KeyWord</h4>
                     <ul>
                         <li class="btn btn-danger">열심</li>
                         <li class="btn btn-warning">성실</li>
@@ -115,7 +94,7 @@
                 </div>
 
                 <div class="col-sm-4 p-5">
-                    <h4>SKILLS</h4>
+                    <h4 class="text-white">SKILLS</h4>
                     <div class="progress">
                         <div class="progress-bar bg-info  progress-bar-striped progress-bar-animated" style="width:70%">
                             java 80%</div>
@@ -153,7 +132,7 @@
 
     </section>
     <!--portfolio-->
-    <section class="mynav p-5">
+    <section class="">
         <h3 class=" text-center text-white">Portfolio</h3>
         <div class="container bg-white p-5 rounded">
             <div class="row">
@@ -194,25 +173,25 @@
                 </div>
             </div>
         </div>
-    </section >
+    </section>
     <!--contact-->
-    <section class="p-5 mybg" >
-        <h3 class=" p-3 text-center">Contact Me</h3>
+    <section class="p-5 mybg">
+        <h3 class=" p-3 text-center text-white">Contact Me</h3>
         <div class="container shadow p-5">
-             <form action="/action_page.php">
-            <div class="mb-3 mt-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-            </div>
-            <div class="mb-3">
-                <label for="comment">Comments:</label>
-                <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            <form action="/action_page.php">
+                <div class="mb-3 mt-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="comment">Comments:</label>
+                    <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
-       
+
     </section>
     <!--footer-->
     <!--Q1.글자를 페이지의 정중앙 배경색 좋아하는 색상-->
