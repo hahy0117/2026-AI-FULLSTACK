@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>이벤트 연습</title>
+  <style>
+    .result_target {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      font-size: 20px;
+      text-align: center;
+      transition: all 0.3s ease; /* 부드러운 애니메이션 효과 */
+    }
+    .big {
+      font-size: 40px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card-body">
+    <h4>EX</h4>
+    <input type="button" value="이름 입력" id="test1" class="btn btn-success" />
+    <input type="button" value="버튼 글자 바꾸기" id="test2" class="btn btn-success" />
+    <input type="button" value="텍스트 수정" id="test3" class="btn btn-success" />
+    <input type="button" value="마우스 이벤트" id="test4" class="btn btn-success" />
+    <input type="button" value="크게/작게" id="test5" class="btn btn-success" />
+    <input type="button" value="숨기기/보이기" id="test6" class="btn btn-success" />
+    <div class="result_target my-5">JAVASCRIPT</div>
+  </div>
+
+  <script> 
+  window.addEventListener("load",function(){
+    // Q1: 이름 입력받아 알림창 띄우기
+    let test1=document.querySelector("#test1");
+    test1.addEventListener("click",function(){
+      let name=prompt("이름 입력해주세요>")
+      alert(name)
+    })
+
+    // Q2: 버튼 글자 바꾸기
+    let test2=document.querySelector("#test2")
+    test2.addEventListener("click",function(){
+      test2.value="바꾸기"
+    })
+ 
+
+    // Q3: result 영역 문자열 알림창 → 이름으로 수정
+    let test3=document.querySelector("#test3")
+    test3.addEventListener("click",function(){
+     let result_target=document.querySelector(".result_target")
+     alert(result_target.innerHTML)
+     result_target.innerHTML="하혜원"
+    })
+    
+
+    // Q4: 마우스 올리면/떼면 배경색 변경
+    let test4=document.querySelector("#test4")
+    test4.addEventListener("mouseover",function(){
+      let result_target=document.querySelector(".result_target")
+      result_target.style.backgroundColor="red"
+    })
+    test4.addEventListener("mouseout",function(){
+      let result_target=document.querySelector(".result_target")
+      result_target.style.backgroundColor="blue"
+    })
+ 
+    // Q5: 글자 크게/작게 토글
+    let test5=document.querySelector("#test5")
+    test5.addEventListener("click",function(){
+      test5.classList.toggle('active');
+    })
+
+    // Q6: 숨기기/보이기 토글
+ 
+  })
+
+    
+  </script>
+</body>
+</html>
