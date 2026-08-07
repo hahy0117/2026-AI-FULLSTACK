@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout004</title>
+    <style>
+     *{margin:0px; padding:0px;}
+    body{  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background-image:linear-gradient(135deg, #f4ffb8 , #8affd0);
+    }
+    h1{ border-left:10px solid #123456; 
+        border-bottom:1px solid #123456;
+        margin:30px 0; padding-left:20px;
+    }
+    .container{  width:50%; margin:50px auto;   border-radius: 10px;
+        background-color:#fff;  padding:20px;  box-shadow:0 0 10px rgba(0,0,0,0.2);
+    overflow: hidden;}
+    
+     ul{
+        width:40%;
+         list-style:none;
+         background-color: rgb(143, 219, 219);
+         overflow: hidden;
+        }
+    ul.team1 ,.team2 li{
+            float:left; margin: 10px;
+        }
+    ul.team1 li img,ul.team2 li img{
+        width:100px;
+        height:100px;
+        border-radius: 50%;
+        text-decoration:3px solid #ff6600;
+        transition:transform 0.8s, border-color 0.8s;
+    }
+   
+   li{
+            float:left; margin: 10px;
+        } 
+    .team1{
+        float:left;
+    }
+    .team2{
+        float:right;
+    }
+     ul.team1 li:first-child img:hover{ 
+        transform: rotateY(-20deg); 
+       border-color:#8affd0;
+    }
+    ul.team1 li:nth-child(2) img:hover{
+        transform:rotateZ(20deg) ;
+        border-color: #f4ffb8;
+    }
+     ul.team1 li:nth-child(3) img:hover{
+        transform:rotateX(180deg) ;
+        border-color: #5ad612;
+    }
+    ul.team1 li:nth-child(4) img:hover{
+        transform:rotateY(180deg) ;
+        border-color: #7712d6;
+    }
+    ul.team1 li:last-child img:hover{
+        transform:rotate(360deg) scale(1.2) ;
+        border-color: #910b5d;
+    }
+
+    
+       
+    
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>어벤져스</h1>
+        <ul class="team1">
+            <li class="item a" ><img src="./img/six.png" alt="이미지1"></li>
+            <li class="item b" ><img src="./img/three.png" alt="이미지2"></li>
+            <li class="item c"><img src="./img/one.png" alt="이미지3"></li>
+            <li class="item d"><img src="./img/three.png" alt="이미지4"></li>
+            <li class="item e"><img src="./img/six.png" alt="이미지4"></li>
+        </ul>
+        <ul class="team2">
+            <li ><img src="./img/seven.png" alt="이미지1"></li>
+            <li ><img src="./img/three.png" alt="이미지2"></li>
+            <li ><img src="./img/one.png" alt="이미지3"></li>
+            <li ><img src="./img/three.png" alt="이미지4"></li>
+            <li ><img src="./img/six.png" alt="이미지4"></li>
+        </ul>
+    </div>
+   
+
+    
+</body>
+</html>

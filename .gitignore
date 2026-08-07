@@ -1,0 +1,31 @@
+/.metadata/
+# Eclipse 관련 폴더 및 파일 무시
+.classpath
+.project
+.settings/
+eclipse/
+portfolio/
+track005_jsp/tomcat9.0/
+
+# 빌드 결과물 무시
+/bin/
+/build/
+
+# IDE 관련
+.idea/
+*.iml
+
+# OS별 임시파일
+*.DS_Store
+Thumbs.db
+
+
+track007_boot_api/boot1/src/main/resources/application-oauth.properties
+track008_1_nodeReact/back/node_modules
+node_modules/
+.env
+.env.*
+dist/
+build/
+coverage/
+.next
