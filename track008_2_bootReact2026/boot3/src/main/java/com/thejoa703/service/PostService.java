@@ -162,13 +162,13 @@ public class PostService {
 
     // 6. 게시글 삭제
     @Transactional
-    public void deletePost(Long postId) {
+    public void deletePost(Long postId,Long userId) {
 
         Post post = postRepository.findById(postId)
                 .orElseThrow(() ->
                         new IllegalArgumentException("존재하지 않는 게시글입니다. ID : " + postId));
 
-        if (post.isDeleted()) {
+        if (post.getUser().getId().equals(userId)) {
             throw new IllegalArgumentException("이미 삭제된 게시글입니다.");
         }
 

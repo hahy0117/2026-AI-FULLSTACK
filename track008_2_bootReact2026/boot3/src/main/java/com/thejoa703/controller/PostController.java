@@ -3,8 +3,10 @@ package com.thejoa703.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.thejoa703.dto.PostDto.PostRequestDto;
 import com.thejoa703.dto.PostDto.PostResponseDto;
 import com.thejoa703.entity.Post;
+import com.thejoa703.service.AuthUserJwtService;
 import com.thejoa703.service.PostService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,6 +39,7 @@ import lombok.RequiredArgsConstructor;
 public class PostController {
 
    private final PostService postService;
+   private final AuthUserJwtService authUserJwtService;
    
    @Operation(summary = "게시글작성" , description = "특정유저 ID와 내용을 받아 게시글을 작성합니다.")
    @PostMapping( consumes= MediaType.MULTIPART_FORM_DATA_VALUE  )
@@ -84,25 +88,59 @@ public class PostController {
    //      return  ResponseEntity.ok(  new  PostResponseDto(post) );  // 200
    //   } 
    
-   @Operation(summary = "게시글 수정" , description = "게시글 수정시")   // 수정 put(전체데이트 수정) , patch( 데이터 일부분수정)
-   @PatchMapping(value="/{postId}" , consumes= MediaType.MULTIPART_FORM_DATA_VALUE     )   //  Put  ( 리소스의 전체 교체 )  /  Patch ( 리소스의 부분수정 )
-   public ResponseEntity<PostResponseDto>  getUpdatePost(
-         @Parameter(description = "작성자 사용자 ID")  @RequestParam("userId")  Long userId,
-         @Parameter(description = "수정할 게시글 ID")  @PathVariable(name="postId")  Long postId,
-         @ModelAttribute PostRequestDto  dto , // 게시글내용 + 댓글
-         @Parameter(description="수정시 업로드할 이미지 파일 리스트")  // swagger
-            @RequestPart(name = "files", required = false) List<MultipartFile> files
-   ){  
-      return  ResponseEntity.ok( postService.updatePost( userId , postId , dto, files) );  // 200
-   } 
+   @Operation(
+		    summary = "게시글 수정",
+		    description = "게시글 수정시"
+		)
+		@PatchMapping(
+		    value = "/{postId}",
+		    consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+		)
+		public ResponseEntity getUpdatePost(
 
+		        Authentication authentication,
+
+		        @Parameter(description = "수정할 게시글 ID")
+		        @PathVariable(name = "postId") Long postId,
+
+		        @ModelAttribute PostRequestDto dto,
+
+		        @Parameter(description = "수정시 업로드할 이미지 파일 리스트")
+		        @RequestPart(name = "files", required = false)
+		        List<MultipartFile> files
+		) {
+
+		    // JWT에서 현재 로그인한 사용자 ID 가져오기
+		    Long userId =
+		            authUserJwtService.getCurrentUserId(authentication);
+
+		    return ResponseEntity.ok(
+		            postService.updatePost(
+		                    userId,
+		                    postId,
+		                    dto,
+		                    files
+		            )
+		    );
+		}
     
-   @Operation(summary = "게시글 삭제" , description = "게시글 삭제시")   // 수정 put(전체데이트 수정) , patch( 데이터 일부분수정)
-   @DeleteMapping("/{id}")   //ctrl + shift + o
-   public ResponseEntity<Long>  deletePost( @PathVariable("id")  Long id ){
-      postService.deletePost(id);
-      return  ResponseEntity.ok(id);  // 200
-   } 
+   @Operation(
+		    summary = "게시글 삭제",
+		    description = "게시글 삭제시"
+		)
+		@DeleteMapping("/{id}")
+		public ResponseEntity<Void> deletePost(
+		        Authentication authentication,
+		        @PathVariable("id") Long id
+		) {
+
+		    Long userId =
+		            authUserJwtService.getCurrentUserId(authentication);
+
+		    postService.deletePost(userId, id);
+
+		    return ResponseEntity.noContent().build();
+		}
     
 } 
 // 요청 : PostRequestDto ,  응답: PostResponseDto
