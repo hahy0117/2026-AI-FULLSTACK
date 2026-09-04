@@ -89,7 +89,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         //
         //redirectUrl(리엑트경로) accessToken =전달
         String targetUrl = redirectUrl + "?accessToken=" + access;
-        response.sendRedirect(targetUrl);
+        //response.sendRedirect(targetUrl);
         response.sendRedirect(targetUrl); //####
     }
 }

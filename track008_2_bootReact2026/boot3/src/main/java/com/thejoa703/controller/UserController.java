@@ -193,6 +193,7 @@ public class UserController {
             }
             return ResponseEntity.status(401).build();  //인증 실패 401
         } catch (Exception e) {
+        	 e.printStackTrace();
             return ResponseEntity.status(401).build();  
         }
     }

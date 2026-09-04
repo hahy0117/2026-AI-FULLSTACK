@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:oracle:thin:@localhost:1521/XE #jdbc url
-    username: ${DB_USERNAME}                        #사용자 계정
-    password: ${DB_PASSWORD}                         # 비밀번호
+    username: boot   #$ {DB_USERNAME}                        #사용자 계정
+    password: react  # ${DB_PASSWORD}                         # 비밀번호
     driver-class-name: oracle.jdbc.OracleDriver
 
   jpa:

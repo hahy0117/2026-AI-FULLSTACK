@@ -30,3 +30,6 @@ build/
 coverage/
 .next
 application-oauth.yml
+
+*.md
+*.pem
