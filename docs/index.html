@@ -4,225 +4,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>혜원 자기소개 페이지</title>
-    <!-- Latest compiled and minified CSS -->
+    <title>혜원 포트폴리오</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Latest compiled JavaScript -->
+    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="./css/my.css" rel="stylesheet">
+    
+    <!-- 세련된 폰트 적용 (Pretendard) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <!-- 영문 필기체 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 기본 폰트 및 배경색 설정 */
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f8f9fa; 
+            color: #333;
+            padding-top: 76px; 
+        }
+
+        /* --- ✨ 심플 & 세련된 개발자 인트로 애니메이션 --- */
+        .dev-intro {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: #0f172a; 
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .dev-intro.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .intro-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f8fafc;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeUp 0.6s forwards 0.2s;
+        }
+
+        .intro-text .tag { color: #818cf8; }
+
+        .cursor {
+            display: inline-block;
+            width: 15px;
+            background-color: #f8fafc;
+            animation: blink 1s step-end infinite;
+        }
+
+        .loading-line-container {
+            width: 150px;
+            height: 2px;
+            background-color: #334155;
+            margin-top: 20px;
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeUp 0.6s forwards 0.4s;
+        }
+
+        .loading-line {
+            width: 0%;
+            height: 100%;
+            background-color: #818cf8;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        body.no-scroll { overflow: hidden; }
+
+        /* --- 🌌 소프트 파스텔(오로라) 히어로 섹션 --- */
+        .hero-mesh {
+            height: calc(100vh - 76px); 
+            display: flex;
+            align-items: center;
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(167, 139, 250, 0.25) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.25) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.25) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(148, 163, 184, 0.15) 0px, transparent 50%);
+        }
+
+        .hero-title {
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: #1e293b; 
+            line-height: 1.15;
+            letter-spacing: -2px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: #475569;
+            line-height: 1.8;
+            letter-spacing: -0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 1rem; }
+        }
+
+        /* --- ✨ 줄글 형태의 스토리텔링 자기소개 --- */
+        .intro-story {
+            max-width: 850px;
+            margin: 0 auto 5rem auto; 
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .intro-story .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            color: #4f46e5;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-story p {
+            margin-bottom: 1.5rem;
+            word-break: keep-all; 
+        }
+
+        .intro-story .more-link {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        .intro-story .more-link:hover { opacity: 0.7; }
+
+        /* --- ✉️ 레퍼런스 스타일 대형 타이포그래피 Contact 섹션 --- */
+        .contact-section-ref {
+            background-color: #ffffff;
+            padding: 8rem 0;
+            text-align: left;
+        }
+
+        .contact-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-heading {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .huge-email-display {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: #111;
+            text-decoration: none;
+            display: inline-block;
+            word-break: break-all;
+            letter-spacing: -2px;
+            margin-bottom: 3.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .huge-email-display:hover {
+            color: #4f46e5;
+        }
+
+        .contact-desc-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            word-break: keep-all;
+        }
+
+        .direct-mail-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .direct-mail-btn:hover {
+            color: #4f46e5;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 992px) {
+            .huge-email-display { font-size: 2.5rem; }
+        }
+        /* ------------------------------------------- */
+
+        /* 로고 및 네비게이션 */
+        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: #4f46e5 !important; letter-spacing: -0.5px; }
+        .nav-link { font-weight: 500; color: #555; transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #4f46e5 !important; }
+
+        section { padding: 6rem 0; }
+        .section-title { font-weight: 800; margin-bottom: 3rem; text-align: center; position: relative; }
+        
+        .card-custom {
+            background: #fff; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem; height: 100%;
+        }
+
+        .keyword-tag {
+            background-color: #f1f5f9; color: #475569; font-weight: 600;
+            padding: 0.5rem 1rem; border-radius: 30px; display: inline-block;
+            margin: 0.2rem; font-size: 0.9rem;
+        }
+
+        .progress { height: 1.2rem; border-radius: 10px; background-color: #e2e8f0; margin-bottom: 1.5rem; }
+        .progress-bar { background-color: #4f46e5; font-size: 0.85rem; font-weight: 600; text-align: left; padding-left: 10px; border-radius: 10px; }
+
+        .tech-chip { border: 1px solid #e2e8f0; border-radius: 20px; padding: 0.4rem 0.8rem; font-size: 0.85rem; color: #64748b; display: inline-block; margin: 0.2rem; background: #fff; }
+
+        .btn-custom { background-color: #4f46e5; color: white; padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; border: none; transition: all 0.3s; }
+        .btn-custom:hover { background-color: #4338ca; color: white; transform: translateY(-2px); }
+        footer { background-color: #1e293b; color: #94a3b8; display: flex; align-items: center; justify-content: center; height: 120px; font-size: 0.9rem; }
+        .visually-hidden-custom { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+    </style>
 </head>
 
-<body>
-    <!--header-->
-    <!--Q1. h1 내용을 바꾸고/a태그가 들어가 잇는 logo/nav 좋아하는 색상으로 바꾸기-->
-    <header>
-        <h1 class="myhidden">하혜원</h1>
+<body class="no-scroll">
 
-        <nav class="mynav navbar navbar-expand-sm navbar-info  ">
-            <h2 class="myhidden">주메뉴</h2>
-            <div class="container-fluid">
-                <a class="navbar-brand" href="javascript:void(0)">hyewon</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+    <!-- ✨ 개발자 감성 인트로 화면 -->
+    <div id="dev-intro" class="dev-intro">
+        <div class="intro-text">
+            <span class="tag">&lt;</span>Hyewon <span class="tag">/&gt;</span><span class="cursor">_</span>
+        </div>
+        <div class="loading-line-container">
+            <div id="loading-line" class="loading-line"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1 class="visually-hidden-custom">하혜원 포트폴리오</h1>
+        <nav class="navbar navbar-expand-sm bg-white shadow-sm fixed-top">
+            <h2 class="visually-hidden-custom">주메뉴</h2>
+            <div class="container">
+                <a class="navbar-brand" href="#">Hyewon.</a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">About Me</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">portfolio</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">portfolio 1</a></li>
-                            <li><a class="dropdown-item" href="#">portfolio 2</a></li>
-                            <li><a class="dropdown-item" href="#">portfolio 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#">Gallery</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active px-3" href="#about">About Me</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle px-3" data-bs-toggle="dropdown" href="#">Portfolio</a>
+                            <ul class="dropdown-menu border-0 shadow-sm rounded-4">
+                                <li><a class="dropdown-item py-2" href="#portfolio">Project 1</a></li>
+                                <li><a class="dropdown-item py-2" href="#portfolio">Project 2</a></li>
+                                <li><a class="dropdown-item py-2" href="#portfolio">Project 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
-
     </header>
-    <!--visual-->
-    <section>
-        <h3 class="myhidden">홍보</h3>
-        <!-- Carousel -->
-        <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-            <!-- Indicators/dots -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-            </div>
-
-            <!-- The slideshow/carousel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="./img/portfolio1.jpg" alt="Los Angeles" class="d-block w-25 mx-auto">
-                </div>
-                <div class="carousel-item">
-                    <img src="./img/portfolio2.jpg" alt="Chicago" class="d-block w-25 mx-auto">
-                </div>
-                <div class="carousel-item">
-                    <img src="./img/portfolio3.jpg" alt="New York" class="d-block w-25 mx-auto">
-                </div>
-            </div>
-
-            <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-    </section>
-    <!--info-->
-    <section class="bg-white">
+    <!-- 🌌 메쉬 그라데이션 히어로 섹션 -->
+    <section id="hero" class="hero-mesh">
         <div class="container">
-            <h3 class="text-center">About me</h3>
-
             <div class="row">
-                <div class="col-sm-4 p-5">
-                    <p><img src="./img/one.png" alt="열정적인 개발자 " class="d-block w-25 mx-auto"></p>
-                    <h4>하혜원</h4>
-
-                    <ul>
-                        <li>혜원 깃허브</li>
-                        <li><a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" title="깃허브 바로가기"
-                                target="_blank">깃허브 포트폴리오</a></li>
-                    </ul>
-                </div>
-
-
-                <div class="col-sm-4 p-5 ">
-                    <h4>Education</h4>
-                    <ul>
-                        <li>AI활용 풀스택(프론트엔드,백엔드)</li>
-                    </ul>
-
-                    <h4>KeyWord</h4>
-                    <ul>
-                        <li class="btn btn-danger">열심</li>
-                        <li class="btn btn-warning">성실</li>
-                        <li class="btn btn-info">끈기</li>
-
-                    </ul>
-                </div>
-
-                <div class="col-sm-4 p-5">
-                    <h4>SKILLS</h4>
-                    <div class="progress">
-                        <div class="progress-bar bg-info  progress-bar-striped progress-bar-animated" style="width:70%">
-                            java 80%</div>
-                    </div>
-                    <br>
-                    <div class="progress">
-                        <div class="progress-bar bg-warning  progress-bar-striped progress-bar-animated"
-                            style="width:60%"> spring 60% </div>
-                    </div>
-                    <br>
-                    <div class="progress">
-                        <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated"
-                            style="width:70%"> oracle 80%</div>
-                    </div>
-                    <br>
-                    <div class="progress">
-                        <div class="progress-bar bg-success  progress-bar-striped progress-bar-animated"
-                            style="width:80%"> react 85%</div>
-                    </div>
-                    <br>
-                    <div class="progress">
-                        <div class="progress-bar bg-secondary  progress-bar-striped progress-bar-animated"
-                            style="width:70%"> aws 80%</div>
-                    </div>
-                    <br>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-    </section>
-    <!--portfolio-->
-    <section class="mynav p-5">
-        <h3 class=" text-center text-white">Portfolio</h3>
-        <div class="container bg-white p-5 rounded">
-            <div class="row">
-                <div class="col-sm-4">
-                    <h4>포트폴리오 동영상</h4>
-                    <iframe class="w-100" src="https://www.youtube.com/embed/ah4jxqEUekI?si=UGxtmXQNjX4L1ZjD"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <botton class="btn btn-primary">포트폴리오 더보기</botton>
-                </div>
-
-                <div class="col-sm-4">
-                    <h4>spring boot + jpa + react portfolio</h4>
-                    <ul>
-                        <li><strong>Boot + JPA</strong> 기반의 백엔드와 데이터 처리 로직 구현</li>
-                        <li><strong>React</strong>를 활용한 사용자 중심의 프론트엔드 UI 개발</li>
-                        <li><strong>JWT인증</strong>과<strong>CI/CD 자동 배포</strong>로 보안성과 효율성 강화</li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-4">
-                    <h4>기술스택</h4>
-                    <ul>
-                        <li>Spring Boot 2.7.14</li>
-                        <li>Spring Security 5.7.x</li>
-                        <li>Spring Data JPA 2.7.x</li>
-                        <li>Hibernate 5.6.x</li>
-                        <li>Oracle 11</li>
-                        <li>React 18.x</li>
-                        <li>Axios 1.x</li>
-                        <li>React Router v6</li>
-                        <li>JWT</li>
-                        <li>Git & GitHub</li>
-                        <li>Git & GitHub</li>
-                    </ul>
-
+                <div class="col-lg-8 text-start">
+                    <h2 class="hero-title">
+                        HYEWON'S<br>
+                        PORTFOLIO
+                    </h2>
+                    <p class="hero-subtitle">
+                        동작하는 코드를 넘어 이유 있는 코드를 작성합니다.<br>
+                        유연한 적응력과 집요한 문제해결 능력을 갖춘 풀스택 개발자 하혜원입니다.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-    <!--contact-->
-    <section class="p-5 mybg">
-        <h3 class=" p-3 text-center">Contact Me</h3>
-        <div class="container shadow p-5">
-            <form action="/action_page.php">
-                <div class="mb-3 mt-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                </div>
-                <div class="mb-3">
-                    <label for="comment">Comments:</label>
-                    <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+
+    <!-- Info (About Me) -->
+    <section id="about" class="bg-white">
+        <div class="container">
+            <h3 class="section-title">About Me</h3>
+            
+            <div class="intro-story text-start">
+                <div class="signature">Hyewon Ha</div>
+                <p>
+                    안녕하세요! 유연한 적응력과 끈기를 가진 풀스택 개발자 하혜원입니다.
+                </p>
+                <p>
+                    Java와 Spring Boot를 활용한 견고한 백엔드 설계부터 React를 이용한 직관적인 프론트엔드 UI 개발까지,<br>
+                    데이터의 흐름을 이해하고 사용자에게 닿는 화면을 직접 구현하는 것에 큰 매력을 느낍니다.
+                </p>
+                <p>
+                    단순히 돌아가는 코드를 짜는 것을 넘어, 에러의 원인을 끝까지 분석하고 논리적으로 해결하는 과정을 즐깁니다.<br>
+                    또한 새로운 기술을 배우고 프로젝트에 적극적으로 적용하는 것 역시 늘 환영합니다!
+                </p>
+                <p>
+                    어떤 업무가 주어지든 강한 책임감을 바탕으로 빈틈없이 마무리하며,<br>
+                    주어진 역할에서 가치를 창출하고 팀과 함께 끊임없이 성장하는 개발자가 되겠습니다.
+                </p>
+                
+                <a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" target="_blank" class="more-link">
+                    GitHub 방문하기 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card-custom text-center bg-light">
+                        <img src="./img/KakaoTalk_20260901_171018758.jpg" alt="열정적인 개발자 하혜원" class="rounded-circle mb-4 w-50 mx-auto shadow-sm" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+                        <h4 class="fw-bold mb-3">하혜원</h4>
+                        <p class="text-muted mb-4">꾸준함의 가치를 아는 개발자</p>
+                        
+                        <h6 class="fw-bold text-start mb-2">KeyWord</h6>
+                        <div class="text-start mb-4">
+                            <span class="keyword-tag">#유연한_적응력</span>
+                            <span class="keyword-tag">#빠른_학습속도</span>
+                            <span class="keyword-tag">#집요한_문제해결</span>
+                            <span class="keyword-tag">#빈틈없는_구현</span>
+                        </div>
+
+                        
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <div class="col-lg-8">
+                    <div class="card-custom bg-light">
+                        <h5 class="fw-bold mb-4">💡 Tech Skills</h5>
+                        
+                        <div class="progress">
+                            <div class="progress-bar" style="width:85%">Java 85%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:90%">Spring 90%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:85%">Oracle 85%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:85%">React 85%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:80%">AWS 80%</div>
+                        </div>
+                        
+                        <h5 class="fw-bold mt-5 mb-3">🎓 Education</h5>
+                        <ul class="text-muted list-unstyled">
+                            <li class="mb-3">
+                                <div class="fw-bold text-dark">방송통신대학교 컴퓨터과학과</div>
+                                <div class="small">재학 중</div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="fw-bold text-dark">AI활용 풀스택 (프론트엔드, 백엔드) 과정</div>
+                                <div class="small">2026.10 수료</div> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </section>
-    <!--footer-->
-    <!--Q1.글자를 페이지의 정중앙 배경색 좋아하는 색상-->
-    <footer class="bg-secondary text-white text-center p-5">
-        © copyrights hyewon 2026 all. rights reserved
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="bg-light">
+        <div class="container">
+            <h3 class="section-title">Portfolio</h3>
+            <div class="card-custom border border-light">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm mb-4">
+                            <iframe src="https://www.youtube.com/embed/ah4jxqEUekI?si=UGxtmXQNjX4L1ZjD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-custom w-100">포트폴리오 자세히 보기</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-primary" style="color: #4f46e5 !important;">Spring Boot + JPA + React 프로젝트</h4>
+                        <p class="text-muted mb-4">현대적인 웹 아키텍처를 기반으로 설계한 웹 서비스입니다.</p>
+                        
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2">✅ <strong>Boot + JPA</strong> 기반의 백엔드와 데이터 처리 로직 구현</li>
+                            <li class="mb-2">✅ <strong>React</strong>를 활용한 사용자 중심의 프론트엔드 UI 개발</li>
+                            <li class="mb-2">✅ <strong>JWT 인증</strong>과 <strong>CI/CD 자동 배포</strong>로 보안성과 효율성 강화</li>
+                        </ul>
+
+                        <h6 class="fw-bold mb-3 mt-4">사용 기술스택</h6>
+                        <div>
+                            <span class="tech-chip">Spring Boot 2.7</span>
+                            <span class="tech-chip">Spring Security</span>
+                            <span class="tech-chip">Spring Data JPA</span>
+                            <span class="tech-chip">Hibernate</span>
+                            <span class="tech-chip">Oracle 11</span>
+                            <span class="tech-chip">React 18</span>
+                            <span class="tech-chip">Axios</span>
+                            <span class="tech-chip">JWT</span>
+                            <span class="tech-chip">Git / GitHub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✉️ 레퍼런스 스타일 대형 타이포그래피 Contact 섹션 -->
+    <section id="contact" class="contact-section-ref">
+        <div class="container">
+            <span class="contact-tag">CONTACT</span>
+            <h3 class="contact-heading">프로젝트를 함께 이끌어갈 파트너를 찾고 계신가요?</h3>
+            
+            <div>
+                <a href="mailto:hahy0117@gmail.com" class="huge-email-display">
+                    hahy0117@gmail.com
+                </a>
+            </div>
+
+            <!-- 하단 좌우 2단 설명 및 메일 보내기 링크 -->
+            <div class="row g-4 mt-2">
+                <div class="col-md-6">
+                    <p class="contact-desc-text">
+                       어떤 환경이든 빠르게 흡수하고 적응하여 실무에 곧바로 힘이 되는 풀스택 개발자가 되겠습니다.
+                       함께 고민하고 성장할 수 있는 협업 제안을 환영합니다.
+                    </p>
+                </div>
+                <div class="col-md-6 d-flex flex-column justify-content-between align-items-md-end align-items-start">
+                    <p class="contact-desc-text">
+                    궁금한 내용이 있다면 편하게 말씀해 주세요!
+                    </p>
+                    <a href="mailto:hahy0117@gmail.com" class="direct-mail-btn mt-3">
+                        메일 보내기 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="m-0">© 2026 Hyewon Ha. All rights reserved.</p>
     </footer>
-</body>
 
+    <!-- ✨ 개발자 감성 인트로 제어용 스크립트 -->
+    <script>
+        const intro = document.getElementById('dev-intro');
+        const line = document.getElementById('loading-line');
+
+        setTimeout(() => {
+            line.style.width = '100%';
+        }, 600); 
+
+        setTimeout(() => {
+            intro.classList.add('fade-out');
+            
+            setTimeout(() => {
+                intro.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            }, 800);
+            
+        }, 2000); 
+    </script>
+</body>
 </html>
-<!--https://github.com/hahy0117/2026-AI-FULLSTACK.git-->
-<!--https://본인아이디.github.io/저장소/-->
