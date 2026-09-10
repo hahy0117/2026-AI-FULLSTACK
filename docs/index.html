@@ -407,44 +407,127 @@
         </div>
     </section>
 
-    <!-- Portfolio -->
+  <!-- Portfolio -->
     <section id="portfolio" class="bg-light">
         <div class="container">
             <h3 class="section-title">Portfolio</h3>
+            
             <div class="card-custom border border-light">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-6">
-                        <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm mb-4">
-                            <iframe src="https://www.youtube.com/embed/ah4jxqEUekI?si=UGxtmXQNjX4L1ZjD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-custom w-100">포트폴리오 자세히 보기</button>
+                <!-- 탭 메뉴 (Version 1, 2, 3) -->
+                <ul class="nav nav-pills justify-content-center mb-5 gap-2" id="moitTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-bold px-4 py-2 rounded-pill" id="v1-tab" data-bs-toggle="pill" data-bs-target="#v1-content" type="button" role="tab" aria-controls="v1-content" aria-selected="false">Moit v1.0</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-bold px-4 py-2 rounded-pill" id="v2-tab" data-bs-toggle="pill" data-bs-target="#v2-content" type="button" role="tab" aria-controls="v2-content" aria-selected="false">Moit v2.0</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active fw-bold px-4 py-2 rounded-pill" id="v3-tab" data-bs-toggle="pill" data-bs-target="#v3-content" type="button" role="tab" aria-controls="v3-content" aria-selected="true">Moit v3.0 (Final)</button>
+                    </li>
+                </ul>
+
+                <!-- 탭 콘텐츠 영역 -->
+                <div class="tab-content" id="moitTabContent">
+                    
+                    <!-- Moit v1.0 -->
+                    <div class="tab-pane fade" id="v1-content" role="tabpanel" aria-labelledby="v1-tab">
+                        <div class="row align-items-center g-5">
+                            <div class="col-lg-6">
+                                <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm mb-4">
+                                    <iframe src="https://www.youtube.com/embed/pyTIHHSDAqs" title="Moit v1.0 video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                                <div class="text-center">
+                                    <a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" target="_blank" class="btn btn-custom w-100">Moit v1.0 GitHub 보기</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h4 class="fw-bold mb-3" style="color: #4f46e5 !important;">Moit v1.0 : 기초 서비스 및 핵심 기능 구현</h4>
+                                <p class="text-muted mb-4">전통적인 MVC 패턴을 바탕으로 핵심 비즈니스 로직과 데이터베이스 연동을 다진 초기 버전입니다.</p>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2">✅ <strong>Spring Framework & JSP</strong> 기반의 탄탄한 웹 서비스 구조 이해</li>
+                                    <li class="mb-2">✅ <strong>MyBatis</strong>를 활용한 SQL 매핑 및 데이터 CRUD 구현</li>
+                                    <li class="mb-2">✅ <strong>Ajax</strong>를 이용한 비동기 통신과 사용자 상호작용 처리</li>
+                                </ul>
+                                <h6 class="fw-bold mb-3 mt-4">사용 기술스택</h6>
+                                <div>
+                                    <span class="tech-chip">Spring Framework</span>
+                                    <span class="tech-chip">JSP</span>
+                                    <span class="tech-chip">MyBatis</span>
+                                    <span class="tech-chip">MySQL</span>
+                                    <span class="tech-chip">Ajax</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <h4 class="fw-bold mb-3 text-primary" style="color: #4f46e5 !important;">Spring Boot + JPA + React 프로젝트</h4>
-                        <p class="text-muted mb-4">현대적인 웹 아키텍처를 기반으로 설계한 웹 서비스입니다.</p>
-                        
-                        <ul class="list-unstyled mb-4">
-                            <li class="mb-2">✅ <strong>Boot + JPA</strong> 기반의 백엔드와 데이터 처리 로직 구현</li>
-                            <li class="mb-2">✅ <strong>React</strong>를 활용한 사용자 중심의 프론트엔드 UI 개발</li>
-                            <li class="mb-2">✅ <strong>JWT 인증</strong>과 <strong>CI/CD 자동 배포</strong>로 보안성과 효율성 강화</li>
-                        </ul>
-
-                        <h6 class="fw-bold mb-3 mt-4">사용 기술스택</h6>
-                        <div>
-                            <span class="tech-chip">Spring Boot 2.7</span>
-                            <span class="tech-chip">Spring Security</span>
-                            <span class="tech-chip">Spring Data JPA</span>
-                            <span class="tech-chip">Hibernate</span>
-                            <span class="tech-chip">Oracle 11</span>
-                            <span class="tech-chip">React 18</span>
-                            <span class="tech-chip">Axios</span>
-                            <span class="tech-chip">JWT</span>
-                            <span class="tech-chip">Git / GitHub</span>
+                    <!-- Moit v2.0 -->
+                    <div class="tab-pane fade" id="v2-content" role="tabpanel" aria-labelledby="v2-tab">
+                        <div class="row align-items-center g-5">
+                            <div class="col-lg-6">
+                                <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm mb-4">
+                                    <iframe src="https://www.youtube.com/embed/vFFOV-ELUPY" title="Moit v2.0 video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                                <div class="text-center">
+                                    <a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" target="_blank" class="btn btn-custom w-100">Moit v2.0 GitHub 보기</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h4 class="fw-bold mb-3" style="color: #4f46e5 !important;">Moit v2.0 : 아키텍처 고도화 및 외부 연동</h4>
+                                <p class="text-muted mb-4">Spring Boot 도입과 Thymeleaf 템플릿 엔진, 외부 API 연동을 통해 확장성을 높인 버전입니다.</p>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2">✅ <strong>Spring Boot</strong> 환경 구축 및 <strong>Thymeleaf</strong>를 통한 렌더링 개선</li>
+                                    <li class="mb-2">✅ <strong>Oracle</strong> 데이터베이스 전환 및 복잡한 쿼리 처리</li>
+                                    <li class="mb-2">✅ <strong>Open API</strong> 연동을 통한 서비스 데이터 확장 및 기능 고도화</li>
+                                </ul>
+                                <h6 class="fw-bold mb-3 mt-4">사용 기술스택</h6>
+                                <div>
+                                    <span class="tech-chip">Spring Boot</span>
+                                    <span class="tech-chip">Thymeleaf</span>
+                                    <span class="tech-chip">MyBatis</span>
+                                    <span class="tech-chip">Oracle</span>
+                                    <span class="tech-chip">Ajax</span>
+                                    <span class="tech-chip">Open API</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Moit v3.0 -->
+                    <div class="tab-pane fade show active" id="v3-content" role="tabpanel" aria-labelledby="v3-tab">
+                        <div class="row align-items-center g-5">
+                            <div class="col-lg-6">
+                                <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm mb-4">
+                                    <iframe src="https://www.youtube.com/embed/X1sHxoJ5mC0" title="Moit v3.0 video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                                <div class="text-center">
+                                    <a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" target="_blank" class="btn btn-custom w-100">Moit v3.0 GitHub 보기</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h4 class="fw-bold mb-3" style="color: #4f46e5 !important;">Moit v3.0 : 모던 풀스택 및 고성능 아키텍처</h4>
+                                <p class="text-muted mb-4">React와 Next.js 기반의 프론트엔드 분리, JPA와 Redis를 활용한 고성능 백엔드 최종 완성 버전입니다.</p>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2">✅ <strong>React & Next.js</strong> 기반 모던 프론트엔드 구축 및 <strong>Ant Design</strong> UI 적용</li>
+                                    <li class="mb-2">✅ <strong>JPA</strong> 객체지향 설계와 <strong>Gradle</strong> 빌드 관리 도입</li>
+                                    <li class="mb-2">✅ <strong>JWT</strong> 인증 체계와 <strong>Redis</strong> 캐싱을 통한 보안성 및 성능 극대화</li>
+                                </ul>
+                                <h6 class="fw-bold mb-3 mt-4">사용 기술스택</h6>
+                                <div>
+                                    <span class="tech-chip">Spring Boot</span>
+                                    <span class="tech-chip">Gradle</span>
+                                    <span class="tech-chip">JPA</span>
+                                    <span class="tech-chip">MyBatis</span>
+                                    <span class="tech-chip">Oracle</span>
+                                    <span class="tech-chip">JWT</span>
+                                    <span class="tech-chip">Redis</span>
+                                    <span class="tech-chip">React</span>
+                                    <span class="tech-chip">Next.js</span>
+                                    <span class="tech-chip">Ant Design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
