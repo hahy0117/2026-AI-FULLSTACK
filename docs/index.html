@@ -17,10 +17,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* 기본 폰트 및 배경색 설정 */
+        /* 기본 폰트 및 배경색 설정 (전체 배경을 부드러운 톤으로 변경) */
         body {
             font-family: 'Pretendard', sans-serif;
-            background-color: #f8f9fa; 
+            background-color: #f8fafc; 
             color: #333;
             padding-top: 76px; 
         }
@@ -98,10 +98,10 @@
             align-items: center;
             background-color: #f8fafc;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(167, 139, 250, 0.25) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.25) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.25) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(148, 163, 184, 0.15) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(167, 139, 250, 0.2) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.2) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.2) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(148, 163, 184, 0.1) 0px, transparent 50%);
         }
 
         .hero-title {
@@ -162,7 +162,7 @@
 
         /* --- ✉️ 레퍼런스 스타일 대형 타이포그래피 Contact 섹션 --- */
         .contact-section-ref {
-            background-color: #ffffff;
+            background-color: #f1f5f9; /* 쨍한 흰색 대신 은은한 톤 적용 */
             padding: 8rem 0;
             text-align: left;
         }
@@ -240,8 +240,9 @@
         
         .card-custom {
             background: #fff; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
             padding: 2.5rem; height: 100%;
+            border: 1px solid #e2e8f0;
         }
 
         .keyword-tag {
@@ -250,10 +251,51 @@
             margin: 0.2rem; font-size: 0.9rem;
         }
 
-        .progress { height: 1.2rem; border-radius: 10px; background-color: #e2e8f0; margin-bottom: 1.5rem; }
-        .progress-bar { background-color: #4f46e5; font-size: 0.85rem; font-weight: 600; text-align: left; padding-left: 10px; border-radius: 10px; }
-
-        .tech-chip { border: 1px solid #e2e8f0; border-radius: 20px; padding: 0.4rem 0.8rem; font-size: 0.85rem; color: #64748b; display: inline-block; margin: 0.2rem; background: #fff; }
+        /* 기술 스택 그리드 디자인 */
+        .stack-category-box {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+        }
+        .stack-category-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .stack-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .stack-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 0.4rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #334155;
+            transition: all 0.2s ease;
+        }
+        .stack-item:hover {
+            background-color: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+        }
+        .stack-item img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
 
         .btn-custom { background-color: #4f46e5; color: white; padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; border: none; transition: all 0.3s; }
         .btn-custom:hover { background-color: #4338ca; color: white; transform: translateY(-2px); }
@@ -290,7 +332,6 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-3" data-bs-toggle="dropdown" href="#">Portfolio</a>
                             <ul class="dropdown-menu border-0 shadow-sm rounded-4">
-                                <!-- 드롭다운 클릭 시 해당 탭과 섹션으로 이동하도록 연동 -->
                                 <li><a class="dropdown-item py-2 project-link" href="#portfolio" data-target="v1-tab">Project 1 (v1.0)</a></li>
                                 <li><a class="dropdown-item py-2 project-link" href="#portfolio" data-target="v2-tab">Project 2 (v2.0)</a></li>
                                 <li><a class="dropdown-item py-2 project-link" href="#portfolio" data-target="v3-tab">Project 3 (v3.0)</a></li>
@@ -321,27 +362,28 @@
         </div>
     </section>
 
-    <!-- Info (About Me) -->
-    <section id="about" class="bg-white">
+    <!-- Info (About Me) - 배경을 은은한 미색(#f8fafc)으로 주어 하얀 빈틈을 줄임 -->
+    <section id="about" style="background-color: #f8fafc;">
         <div class="container">
             <h3 class="section-title">About Me</h3>
             
             <div class="intro-story text-start">
                 <div class="signature">Hyewon Ha</div>
                 <p>
-                    안녕하세요! 유연한 적응력과 끈기를 가진 풀스택 개발자 하혜원입니다.
+                    안녕하세요! 새로운 기술을 빠르게 익히는 실행력과 끈기를 가진 풀스택 개발자 하혜원입니다.
                 </p>
                 <p>
-                    Java와 Spring Boot를 활용한 견고한 백엔드 설계부터 React를 이용한 직관적인 프론트엔드 UI 개발까지,<br>
-                    데이터의 흐름을 이해하고 사용자에게 닿는 화면을 직접 구현하는 것에 큰 매력을 느낍니다.
+                    Java와 Spring Boot 기반의 견고한 백엔드 설계부터 React를 활용한 프론트엔드 UI 개발까지,<br>
+                    데이터의 흐름을 깊이 있게 이해하고 사용자에게 닿는 화면을 직접 구현하는 것에 매력을 느낍니다.
                 </p>
                 <p>
-                    단순히 돌아가는 코드를 짜는 것을 넘어, 에러의 원인을 끝까지 분석하고 논리적으로 해결하는 과정을 즐깁니다.<br>
-                    또한 새로운 기술을 배우고 프로젝트에 적극적으로 적용하는 것 역시 늘 환영합니다!
+                    <strong>첫째, 직접 부딪히며 익히는 실행력</strong>을 바탕으로 새로운 기능을 빠르게 체득하고,<br>
+                    <strong>둘째, 원활한 소통과 유연한 협업</strong>으로 팀 내 시너지를 이끌어냅니다.<br>
+                    또한, <strong>확실하게 이해하려는 집요함</strong>으로 에러의 원인을 끝까지 분석하여 빈틈없이 마무리합니다.
                 </p>
                 <p>
-                    어떤 업무가 주어지든 강한 책임감을 바탕으로 빈틈없이 마무리하며,<br>
-                    주어진 역할에서 가치를 창출하고 팀과 함께 끊임없이 성장하는 개발자가 되겠습니다.
+                    맡은 업무에서 가치를 창출하는 성과를 내는 것은 물론, 팀과 함께 긍정적인 에너지를 나누며<br>
+                    늘 신뢰를 주는 개발자로 끊임없이 성장하겠습니다.
                 </p>
                 
                 <a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" target="_blank" class="more-link">
@@ -354,7 +396,7 @@
 
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <div class="card-custom text-center bg-light">
+                    <div class="card-custom text-center">
                         <img src="img/hyewon.jpg" alt="열정적인 개발자 하혜원" class="rounded-circle mb-4 w-50 mx-auto shadow-sm" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
                         <h4 class="fw-bold mb-3">하혜원</h4>
                         <p class="text-muted mb-4">꾸준함의 가치를 아는 개발자</p>
@@ -370,23 +412,62 @@
                 </div>
 
                 <div class="col-lg-8">
-                    <div class="card-custom bg-light">
+                    <div class="card-custom">
                         <h5 class="fw-bold mb-4">💡 Tech Skills</h5>
                         
-                        <div class="progress">
-                            <div class="progress-bar" style="width:85%">Java 85%</div>
+                        <!-- 백엔드 -->
+                        <div class="stack-category-box">
+                            <div class="stack-category-title">백엔드</div>
+                            <div class="stack-grid">
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"> Spring</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot"> Spring Boot</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Security"> Spring Security</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="JPA"> JPA</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MyBatis"> MyBatis</div>
+                            </div>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar" style="width:90%">Spring 90%</div>
+
+                        <!-- 프런트엔드 -->
+                        <div class="stack-category-box">
+                            <div class="stack-category-title">프런트엔드</div>
+                            <div class="stack-grid">
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"> React</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"> JavaScript</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"> HTML</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"> CSS</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Thymeleaf"> Thymeleaf</div>
+                            </div>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar" style="width:85%">Oracle 85%</div>
+
+                        <!-- 데이터베이스 -->
+                        <div class="stack-category-box">
+                            <div class="stack-category-title">데이터베이스</div>
+                            <div class="stack-grid">
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle"> Oracle</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"> MySQL</div>
+                            </div>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar" style="width:85%">React 85%</div>
+
+                        <!-- 데브옵스 -->
+                        <div class="stack-category-box">
+                            <div class="stack-category-title">데브옵스</div>
+                            <div class="stack-grid">
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS EC2"> AWS EC2</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"> Linux</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx"> Nginx</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"> GitHub Actions</div>
+                            </div>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar" style="width:80%">AWS 80%</div>
+
+                        <!-- 도구 -->
+                        <div class="stack-category-box">
+                            <div class="stack-category-title">도구</div>
+                            <div class="stack-grid">
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"> Git</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> GitHub</div>
+                                <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg" alt="Swagger"> Swagger</div>
+                            </div>
                         </div>
                         
                         <h5 class="fw-bold mt-5 mb-3">🎓 Education</h5>
@@ -407,7 +488,7 @@
     </section>
 
     <!-- Portfolio -->
-    <section id="portfolio" class="bg-light">
+    <section id="portfolio">
         <div class="container">
             <h3 class="section-title">Portfolio</h3>
             
@@ -459,12 +540,12 @@
                                     <li class="mb-2">✅ <strong>마이페이지 후기 공개/비공개 설정</strong>: 마이페이지 내에서 본인이 작성한 후기 목록의 공개 여부 변경 기능 구현</li>
                                 </ul>
                                 <h6 class="fw-bold mb-3 mt-4">사용 기술스택</h6>
-                                <div>
-                                    <span class="tech-chip">Spring Framework</span>
-                                    <span class="tech-chip">JSP</span>
-                                    <span class="tech-chip">MyBatis</span>
-                                    <span class="tech-chip">MySQL</span>
-                                    <span class="tech-chip">Ajax</span>
+                                <div class="stack-grid">
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"> Spring Framework</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="JSP"> JSP</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MyBatis"> MyBatis</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"> MySQL</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="Ajax"> Ajax</div>
                                 </div>
                             </div>
                         </div>
@@ -491,13 +572,13 @@
                                     <li class="mb-2">✅ <strong>마이페이지 후기 관리</strong>: 본인 작성 후기 검색·정렬 및 수정·삭제 기능 제공</li>
                                 </ul>
                                 <h6 class="fw-bold mb-3 mt-4">사용 기술스택</h6>
-                                <div>
-                                    <span class="tech-chip">Spring Boot</span>
-                                    <span class="tech-chip">Thymeleaf</span>
-                                    <span class="tech-chip">MyBatis</span>
-                                    <span class="tech-chip">Oracle</span>
-                                    <span class="tech-chip">Ajax</span>
-                                    <span class="tech-chip">Open API</span>
+                                <div class="stack-grid">
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot"> Spring Boot</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Thymeleaf"> Thymeleaf</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MyBatis"> MyBatis</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle"> Oracle</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="Ajax"> Ajax</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Open API"> Open API</div>
                                 </div>
                             </div>
                         </div>
@@ -524,17 +605,17 @@
                                     <li class="mb-2">✅ <strong>상태 관리 및 관리자 기능</strong>: 부적절한 후기 숨김 처리를 위한 상태 관리, 검색·정렬 및 관리자 권한 삭제 기능 구현</li>
                                 </ul>
                                 <h6 class="fw-bold mb-3 mt-4">사용 기술스택</h6>
-                                <div>
-                                    <span class="tech-chip">Spring Boot</span>
-                                    <span class="tech-chip">Gradle</span>
-                                    <span class="tech-chip">JPA</span>
-                                    <span class="tech-chip">MyBatis</span>
-                                    <span class="tech-chip">Oracle</span>
-                                    <span class="tech-chip">JWT</span>
-                                    <span class="tech-chip">Redis</span>
-                                    <span class="tech-chip">React</span>
-                                    <span class="tech-chip">Next.js</span>
-                                    <span class="tech-chip">Ant Design</span>
+                                <div class="stack-grid">
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot"> Spring Boot</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-original.svg" alt="Gradle"> Gradle</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="JPA"> JPA</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MyBatis"> MyBatis</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle"> Oracle</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-original.svg" alt="JWT"> JWT</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"> Redis</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"> React</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"> Next.js</div>
+                                    <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/antdesign/antdesign-original.svg" alt="Ant Design"> Ant Design</div>
                                 </div>
                             </div>
                         </div>
