@@ -6,49 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>하혜원 Portfolio</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Pretendard 폰트 -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <!-- 영문 필기체 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <!-- AOS (Animate On Scroll) CSS -->
+    <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
             --primary-color: #4f46e5;
+            --primary-light: #6366f1;
             --primary-hover: #4338ca;
+            --primary-subtle: #eef2ff;
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
-            --text-main: #1e293b;
+            --text-main: #0f172a;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
+            --card-border: rgba(226, 232, 240, 0.9);
+            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            --card-hover-shadow: 0 20px 35px -10px rgba(79, 70, 229, 0.09), 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             padding-top: 76px;
             overflow-x: hidden;
-            letter-spacing: -0.01em;
-            scroll-behavior: smooth; /* 부드러운 스크롤 기본 적용 */
+            letter-spacing: -0.02em;
+        }
+
+        /* 헤더 고정 높이 보정용 */
+        [id] {
+            scroll-margin-top: 95px;
         }
 
         /* --- ✨ 개발자 인트로 애니메이션 --- */
         .dev-intro {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: #0f172a; 
+            background-color: #090d16; 
             z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
         }
 
         .dev-intro.fade-out {
@@ -59,10 +71,10 @@
         .intro-text {
             font-family: 'Courier New', Courier, monospace;
             font-size: 2.5rem;
-            font-weight: bold;
+            font-weight: 700;
             color: #f8fafc;
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(15px);
             animation: fadeUp 0.6s forwards 0.2s;
         }
 
@@ -70,17 +82,17 @@
 
         .cursor {
             display: inline-block;
-            width: 15px;
+            width: 14px;
             background-color: #f8fafc;
             animation: blink 1s step-end infinite;
         }
 
         .loading-line-container {
-            width: 150px;
-            height: 2px;
-            background-color: #334155;
-            margin-top: 20px;
-            border-radius: 2px;
+            width: 160px;
+            height: 3px;
+            background-color: #1e293b;
+            margin-top: 24px;
+            border-radius: 999px;
             overflow: hidden;
             opacity: 0;
             animation: fadeUp 0.6s forwards 0.4s;
@@ -89,8 +101,8 @@
         .loading-line {
             width: 0%;
             height: 100%;
-            background-color: #818cf8;
-            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @keyframes fadeUp {
@@ -104,109 +116,165 @@
 
         body.no-scroll { overflow: hidden; }
 
+        /* --- 🌌 내비게이션 바 --- */
+        .navbar {
+            backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand { 
+            font-weight: 800; 
+            font-size: 1.45rem; 
+            color: var(--primary-color) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link { 
+            font-weight: 600; 
+            color: #475569; 
+            font-size: 0.95rem;
+            transition: color 0.2s; 
+        }
+
+        .nav-link:hover, .nav-link.active { 
+            color: var(--primary-color) !important; 
+        }
+
+        .dropdown-menu {
+            border-radius: 16px;
+            padding: 0.5rem;
+            box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.12);
+            border: 1px solid var(--border-color);
+        }
+
+        .dropdown-item {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            color: #334155;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--primary-subtle);
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
         /* --- 🌌 히어로 섹션 --- */
         .hero-mesh {
-            height: calc(100vh - 76px); 
+            min-height: calc(100vh - 76px); 
             display: flex;
             align-items: center;
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(167, 139, 250, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 0%, rgba(167, 139, 250, 0.18) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.18) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.15) 0px, transparent 50%);
         }
 
         .hero-title {
-            font-size: 5rem;
+            font-size: clamp(3rem, 7vw, 5.2rem);
             font-weight: 900;
             color: var(--text-main); 
-            line-height: 1.1;
-            letter-spacing: -2px;
+            line-height: 1.05;
+            letter-spacing: -3px;
             margin-bottom: 1.5rem;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 400;
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
-        /* --- 공통 카드 스타일 --- */
+        /* --- 카드 공통 스타일 --- */
         .card-custom {
             background: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
             padding: 2.5rem;
-            height: 100%;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .card-custom:hover {
-            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.06);
+            box-shadow: var(--card-hover-shadow);
             border-color: #cbd5e1;
         }
 
-        section { padding: 6rem 0; }
+        section { padding: 6.5rem 0; }
+
         .section-title { 
-            font-size: 2.2rem;
-            font-weight: 800; 
-            margin-bottom: 3.5rem; 
-            text-align: center; 
-            letter-spacing: -1px;
+            font-size: 2.4rem;
+            font-weight: 900; 
+            margin-bottom: 1rem; 
+            letter-spacing: -1.2px;
+            color: var(--text-main);
         }
 
-        /* --- 스토리텔링 자기소개 --- */
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 3.5rem;
+        }
+
+        /* --- About Me 스토리텔링 --- */
         .intro-story {
-            max-width: 900px;
+            max-width: 880px;
             margin: 0 auto 4rem auto; 
-            font-size: 1.15rem;
-            line-height: 1.8;
+            font-size: 1.1rem;
+            line-height: 1.85;
             color: #334155;
             text-align: center;
         }
 
         .intro-story .signature {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
+            font-size: 3.2rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .keyword-badge {
-            background-color: #eef2ff;
-            color: var(--primary-color);
+            background-color: #f1f5f9;
+            color: #475569;
             font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
             display: inline-block;
-            margin: 0.3rem;
-            font-size: 0.9rem;
-            border: 1px solid #e0e7ff;
+            margin: 0.25rem;
+            font-size: 0.88rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
         }
 
-        /* --- 기술 스택 그리드 시스템 --- */
+        .keyword-badge:hover {
+            background-color: var(--primary-subtle);
+            color: var(--primary-color);
+            border-color: #c7d2fe;
+        }
+
+        /* --- 기술 스택 박스 --- */
         .tech-category-box {
             background-color: #f8fafc;
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 1.5rem;
+            border-radius: 18px;
+            padding: 1.4rem;
             height: 100%;
-            transition: transform 0.2s;
-        }
-        
-        .tech-category-box:hover {
-            transform: translateY(-3px);
         }
 
         .tech-category-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 1rem;
+            margin-bottom: 0.9rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -215,26 +283,26 @@
         .tech-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 7px;
         }
 
-        .tech-item {
-            display: flex;
+        .tech-pill {
+            display: inline-flex;
             align-items: center;
             gap: 6px;
             background-color: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 0.4rem 0.8rem;
+            border: 1px solid #e2e8f0;
+            padding: 0.35rem 0.75rem;
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
             color: #475569;
             box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
 
-        .tech-item img {
-            width: 16px;
-            height: 16px;
+        .tech-pill img {
+            width: 15px;
+            height: 15px;
             object-fit: contain;
         }
 
@@ -245,80 +313,244 @@
             align-items: center;
             justify-content: center;
             border-radius: 4px;
-            background-color: #eef2ff;
+            background-color: var(--primary-subtle);
             color: var(--primary-color);
             font-size: 8px;
             font-weight: 800;
-            flex-shrink: 0;
         }
 
-
-        /* 네비게이션 및 버튼 */
-        .navbar-brand { font-weight: 800; font-size: 1.4rem; color: var(--primary-color) !important; }
-        .nav-link { font-weight: 500; color: #475569; transition: color 0.3s; cursor: pointer; }
-        .nav-link:hover, .nav-link.active { color: var(--primary-color) !important; }
-
-        .btn-custom { 
-            background-color: var(--primary-color); 
-            color: white; 
-            padding: 0.8rem 2rem; 
-            border-radius: 30px; 
-            font-weight: 600; 
-            border: none; 
-            transition: all 0.3s; 
+        /* ========================================================
+           🌟 [MODERN PORTFOLIO SECTION ENHANCEMENT] 
+        ======================================================== */
+        .project-card-main {
+            position: relative;
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.08), 0 0 0 1px rgba(79, 70, 229, 0.05);
+            padding: 3rem;
+            overflow: hidden;
+            transition: all 0.35s ease;
         }
-        .btn-custom:hover { 
-            background-color: var(--primary-hover); 
-            color: white; 
-            transform: translateY(-2px); 
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+
+        .project-card-main:hover {
+            box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.15);
+            border-color: rgba(79, 70, 229, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .project-card-main::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5, #06b6d4);
+        }
+
+        .badge-pill-soft {
+            background-color: #eef2ff;
+            color: #4f46e5;
+            font-weight: 700;
+            font-size: 0.78rem;
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-pill-subtle {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 600;
+            font-size: 0.78rem;
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .video-box {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            background: #000;
+        }
+
+        /* 기능 & 트러블슈팅 카드 */
+        .feature-block {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.4rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.92rem;
+            color: #334155;
+            line-height: 1.65;
+        }
+
+        .feature-list li:last-child { margin-bottom: 0; }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        /* 세련된 트러블슈팅 아이템 */
+        .trouble-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.15rem;
+            margin-bottom: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .trouble-card:last-child { margin-bottom: 0; }
+
+        .trouble-card:hover {
+            border-color: #c7d2fe;
+            background: #fafafa;
+        }
+
+        .trouble-badge-prob {
+            background-color: #fee2e2;
+            color: #dc2626;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .trouble-badge-sol {
+            background-color: #dcfce7;
+            color: #15803d;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        /* 서브 프로젝트 카드 */
+        .sub-project-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            height: 100%;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sub-project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-hover-shadow);
+            border-color: #cbd5e1;
+        }
+
+        .btn-action-primary {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.65rem 1.25rem;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action-primary:hover {
+            background-color: var(--primary-hover);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+        }
+
+        .btn-action-outline {
+            background-color: #ffffff;
+            color: #334155;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            padding: 0.55rem 1.1rem;
+            border: 1px solid #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action-outline:hover {
+            background-color: #f8fafc;
+            border-color: #94a3b8;
+            color: #0f172a;
         }
 
         /* Contact 섹션 */
         .contact-section-ref {
-            background-color: #0f172a; 
+            background-color: #090d16; 
             color: #ffffff;
-            padding: 8rem 0;
+            padding: 7.5rem 0;
             text-align: left;
         }
 
         .contact-tag {
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
             color: #818cf8;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             display: block;
         }
 
         .contact-heading {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
             color: #f8fafc;
             margin-bottom: 2rem;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px;
         }
 
         .huge-email-display {
-            font-size: 4rem;
-            font-weight: 800;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 900;
             color: #f8fafc;
             text-decoration: none;
             display: inline-block;
             word-break: break-all;
-            letter-spacing: -2px;
-            margin-bottom: 3rem;
+            letter-spacing: -1.5px;
+            margin-bottom: 2.5rem;
             transition: color 0.3s;
         }
 
         .huge-email-display:hover { color: #818cf8; }
-
-        .contact-desc-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #94a3b8;
-        }
 
         .direct-mail-btn {
             display: inline-flex;
@@ -327,22 +559,26 @@
             color: #f8fafc;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
-            transition: transform 0.3s;
+            font-size: 1.05rem;
+            transition: all 0.3s;
         }
-        .direct-mail-btn:hover { color: #818cf8; transform: translateX(5px); }
+
+        .direct-mail-btn:hover { color: #818cf8; transform: translateX(6px); }
 
         footer { 
-            background-color: #090d16; 
+            background-color: #040711; 
             color: #64748b; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            height: 100px; 
-            font-size: 0.9rem; 
+            height: 90px; 
+            font-size: 0.88rem; 
+            border-top: 1px solid #1e293b;
         }
 
-        .visually-hidden-custom { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+        .visually-hidden-custom { 
+            position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; 
+        }
     </style>
 </head>
 
@@ -361,23 +597,26 @@
     <!-- Header -->
     <header>
         <h1 class="visually-hidden-custom">하혜원 포트폴리오</h1>
-        <nav class="navbar navbar-expand-sm bg-white shadow-sm fixed-top py-3">
+        <nav class="navbar navbar-expand-lg fixed-top py-3">
             <h2 class="visually-hidden-custom">주메뉴</h2>
             <div class="container">
-                <a class="navbar-brand" href="#">Hyewon.</a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <a class="navbar-brand" href="#hero">Hyewon.</a>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link px-3 active" href="#about">About Me</a></li>
+                    <ul class="navbar-nav gap-1 align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link px-3" href="#about">About Me</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle px-3" data-bs-toggle="dropdown" href="#">Portfolio</a>
-                            <ul class="dropdown-menu border-0 shadow-lg rounded-4 mt-2">
-                                <li><a class="dropdown-item py-2 project-link" href="#version-bank" data-target="version-bank"> Bank Project</a></li>
-                                <li><a class="dropdown-item py-2 project-link" href="#version-v1" data-target="version-v1">Project 1 (v1.0)</a></li>
-                                <li><a class="dropdown-item py-2 project-link" href="#version-v2" data-target="version-v2">Project 2 (v2.0)</a></li>
-                                <li><a class="dropdown-item py-2 project-link" href="#version-v3" data-target="version-v3">Project 3 (v3.0)</a></li>
+                            <a class="nav-link dropdown-toggle px-3 active" href="#portfolio" id="portfolioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Portfolio
+                            </a>
+                            <ul class="dropdown-menu shadow-lg border-0" aria-labelledby="portfolioDropdown">
+                                <li><a class="dropdown-item scroll-trigger" href="#version-v3"><i class="bi bi-stars text-primary me-2"></i>MOIT v3.0 (Main)</a></li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li><a class="dropdown-item scroll-trigger" href="#version-v2"><i class="bi bi-layers text-secondary me-2"></i>MOIT v2.0</a></li>
+                                <li><a class="dropdown-item scroll-trigger" href="#version-v1"><i class="bi bi-code-square text-secondary me-2"></i>MOIT v1.0</a></li>
+                                <li><a class="dropdown-item scroll-trigger" href="#version-bank"><i class="bi bi-terminal text-secondary me-2"></i>Bank Project</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
@@ -391,16 +630,19 @@
     <section id="hero" class="hero-mesh">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 text-start" data-aos="fade-up" data-aos-duration="1000">
-                    <span class="text-indigo fw-bold text-primary mb-2 d-block tracking-wide">DATA & FULL-STACK PORTFOLIO</span>
+                <div class="col-lg-9 text-start" data-aos="fade-up" data-aos-duration="900">
+                    <span class="badge-pill-soft mb-3">DATA & FULL-STACK PORTFOLIO</span>
                     <h2 class="hero-title">
-                        HYEWON'S<br>
-                        PORTFOLIO
+                        HYEWON'S<br>PORTFOLIO
                     </h2>
-                    <p class="hero-subtitle">
+                    <p class="hero-subtitle mb-4">
                         데이터의 흐름을 설계하고 가치 있는 프로덕트로 완성합니다.<br>
                         데이터 파이프라인부터 백엔드와 프론트엔드까지 다루는 개발자 하혜원입니다.
                     </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#portfolio" class="btn-action-primary">포트폴리오 살펴보기 <i class="bi bi-arrow-down-short fs-5"></i></a>
+                        <a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" target="_blank" class="btn-action-outline"><i class="bi bi-github"></i> GitHub</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -409,7 +651,10 @@
     <!-- About Me 및 프로필/학력 섹션 -->
     <section id="about">
         <div class="container">
-            <h3 class="section-title" data-aos="fade-up">About Me</h3>
+            <div class="text-center" data-aos="fade-up">
+                <h3 class="section-title">About Me</h3>
+                <p class="section-desc">탄탄한 기본기와 끈기 있는 문제 해결력으로 가치를 더합니다.</p>
+            </div>
             
             <div class="intro-story" data-aos="fade-up" data-aos-delay="100">
                 <div class="signature">Hyewon Ha</div>
@@ -435,28 +680,23 @@
                     <span class="keyword-badge">#집요한_문제해결</span>
                     <span class="keyword-badge">#빈틈없는_구현</span>
                 </div>
-                <div class="mt-4">
-                    <a href="https://github.com/hahy0117/2026-AI-FULLSTACK.git" target="_blank" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-bold text-decoration-none">
-                        GitHub 프로필 방문하기 →
-                    </a>
-                </div>
             </div>
 
             <!-- 프로필 카드 & 학력 카드 분할 영역 -->
             <div class="row g-4 mb-5">
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-custom text-center d-flex flex-column justify-content-center">
-                        <img src="img/hyewon.jpg" alt="하혜원 프로필 사진" class="rounded-circle mb-3 w-25 mx-auto shadow-sm" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
-                        <h4 class="fw-bold mb-1">하혜원 (Hyewon Ha)</h4>
+                    <div class="card-custom text-center d-flex flex-column justify-content-center h-100">
+                        <img src="img/hyewon.jpg" alt="하혜원 프로필 사진" class="rounded-circle mb-3 mx-auto shadow-sm" style="width: 110px; height: 110px; object-fit: cover;" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+                        <h4 class="fw-bold mb-1 fs-5">하혜원 (Hyewon Ha)</h4>
                         <p class="text-muted mb-0 small">Software & Data Developer</p>
                     </div>
                 </div>
 
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
-                    <div class="card-custom text-start">
-                        <h5 class="fw-bold mb-4 text-primary">🎓 Education & Training</h5>
+                    <div class="card-custom text-start h-100">
+                        <h5 class="fw-bold mb-4 text-primary fs-6"><i class="bi bi-mortarboard-fill me-2"></i>Education & Training</h5>
                         <ul class="text-muted list-unstyled mb-0">
-                            <li class="mb-3 pb-2 border-bottom">
+                            <li class="mb-3 pb-3 border-bottom">
                                 <div class="fw-bold text-dark">방송통신대학교 컴퓨터과학과</div>
                                 <div class="small text-secondary">재학 중</div>
                             </li>
@@ -469,24 +709,23 @@
                 </div>
             </div>
 
-            <!-- 기술 스택 (Tech Skills) 독립 대형 카드 영역 -->
+            <!-- 기술 스택 -->
             <div class="card-custom" data-aos="fade-up" data-aos-delay="300">
-                <h5 class="fw-bold mb-4 text-primary">💡 Tech Stack & Competencies</h5>
+                <h5 class="fw-bold mb-4 text-primary fs-6"><i class="bi bi-code-slash me-2"></i>Tech Stack & Competencies</h5>
 
                 <div class="row g-4">
-
                     <!-- 백엔드 -->
                     <div class="col-lg-6">
                         <div class="tech-category-box">
-                            <div class="tech-category-title">Backend</div>
+                            <div class="tech-category-title"><i class="bi bi-hdd-rack text-primary"></i> Backend</div>
                             <div class="tech-grid">
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"> Spring</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot"> Spring Boot</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Security"> Spring Security</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg" alt="JPA"> JPA</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MyBatis"> MyBatis</div>
-                                <div class="tech-item"><span class="tech-text-icon">JWT</span> JWT</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"> Spring</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot"> Spring Boot</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Security"> Spring Security</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg" alt="JPA"> JPA</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MyBatis"> MyBatis</div>
+                                <div class="tech-pill"><span class="tech-text-icon">JWT</span> JWT</div>
                             </div>
                         </div>
                     </div>
@@ -494,15 +733,15 @@
                     <!-- 프론트엔드 -->
                     <div class="col-lg-6">
                         <div class="tech-category-box">
-                            <div class="tech-category-title">Frontend</div>
+                            <div class="tech-category-title"><i class="bi bi-window-sidebar text-primary"></i> Frontend</div>
                             <div class="tech-grid">
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"> React</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"> JavaScript</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"> HTML</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"> CSS</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" alt="Redux-Saga"> Redux-Saga</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/antdesign/antdesign-original.svg" alt="Ant Design"> Ant Design</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thymeleaf/thymeleaf-original.svg" alt="Thymeleaf"> Thymeleaf</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"> React</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"> JavaScript</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"> HTML5</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"> CSS3</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" alt="Redux-Saga"> Redux-Saga</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/antdesign/antdesign-original.svg" alt="Ant Design"> Ant Design</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thymeleaf/thymeleaf-original.svg" alt="Thymeleaf"> Thymeleaf</div>
                             </div>
                         </div>
                     </div>
@@ -510,11 +749,11 @@
                     <!-- 데이터베이스 -->
                     <div class="col-lg-4">
                         <div class="tech-category-box">
-                            <div class="tech-category-title">Database & Cache</div>
+                            <div class="tech-category-title"><i class="bi bi-database text-primary"></i> Database & Cache</div>
                             <div class="tech-grid">
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle"> Oracle</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"> MySQL</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"> Redis</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle"> Oracle</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"> MySQL</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"> Redis</div>
                             </div>
                         </div>
                     </div>
@@ -522,167 +761,154 @@
                     <!-- AI & Data -->
                     <div class="col-lg-4">
                         <div class="tech-category-box">
-                            <div class="tech-category-title">AI & Data</div>
+                            <div class="tech-category-title"><i class="bi bi-cpu text-primary"></i> AI & Data</div>
                             <div class="tech-grid">
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"> Python</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"> Django</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"> Pandas</div>
-                                <div class="tech-item"><span class="tech-text-icon">AI</span> OpenAI API</div>
-                                <div class="tech-item"><span class="tech-text-icon">JS</span> Chart.js</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"> Python</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"> Django</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"> Pandas</div>
+                                <div class="tech-pill"><span class="tech-text-icon">AI</span> OpenAI API</div>
+                                <div class="tech-pill"><span class="tech-text-icon">JS</span> Chart.js</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 데브옵스 -->
+                    <!-- DevOps & Tools -->
                     <div class="col-lg-4">
                         <div class="tech-category-box">
-                            <div class="tech-category-title">DevOps & Infra</div>
+                            <div class="tech-category-title"><i class="bi bi-gear-wide-connected text-primary"></i> DevOps & Tools</div>
                             <div class="tech-grid">
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"> AWS EC2</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"> Linux</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx"> Nginx</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"> GitHub Actions</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"> AWS EC2</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"> Linux</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx"> Nginx</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"> Git</div>
+                                <div class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> GitHub</div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- 도구 -->
-                    <div class="col-lg-4">
-                        <div class="tech-category-box">
-                            <div class="tech-category-title">Tools</div>
-                            <div class="tech-grid">
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"> Git</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> GitHub</div>
-                                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg" alt="Swagger"> Swagger</div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-
         </div>
     </section>
 
-   <!-- Portfolio 섹션 -->
-   <!-- Portfolio 섹션 -->
-    <section id="portfolio" class="py-5">
+    <!-- ========================================================
+         🌟 [REFINED PORTFOLIO SECTION]
+    ======================================================== -->
+    <section id="portfolio" class="pt-4 pb-5">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-                <h3 class="section-title mb-3">Portfolio</h3>
-                <p class="text-muted fs-6 mb-4">
-                    기초 콘솔 프로젝트부터 대규모 분리형 웹 아키텍처까지의 개발 및 트러블슈팅 기록입니다.
-                </p>
-                <!-- 라이브 사이트 배너 -->
-                <a href="https://moit-web-v3.duckdns.org/" target="_blank" class="btn btn-primary fw-bold px-4 py-2 rounded-pill d-inline-flex align-items-center gap-2 shadow-sm">
-                    <span>MOIT 배포 사이트 바로가기</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                    </svg>
-                </a>
+                <h3 class="section-title">Projects</h3>
+                <p class="section-desc">기초 콘솔 알고리즘부터 마이크로서비스 지향 풀스택 웹 아키텍처까지의 트러블슈팅과 성장 기록입니다.</p>
             </div>
 
-            <!-- ========================================== -->
-            <!-- 🌟 [MAIN PROJECT] MOIT v3.0 (최신 완성작) -->
-            <!-- ========================================== -->
-            <div id="version-v3" class="card-custom border-2 border-primary mb-5" data-aos="fade-up">
-                <div class="row g-4 align-items-center mb-4 pb-3 border-bottom">
-                    <div class="col-md-7">
+            <!-- 🌟 [MAIN FLAGSHIP PROJECT] MOIT v3.0 -->
+            <div id="version-v3" class="project-card-main mb-5" data-aos="fade-up">
+                <!-- 상단 헤더 라인 -->
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 pb-4 mb-4 border-bottom">
+                    <div>
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <span class="badge bg-primary fs-6 px-3 py-1">Main Web Project</span>
-                            <span class="badge bg-success fs-6 px-2 py-1">v3.0 Final</span>
+                            <span class="badge-pill-soft"><i class="bi bi-star-fill"></i> Flagship Project</span>
+                            <span class="badge-pill-subtle">v3.0 Final</span>
                         </div>
-                        <h4 class="fw-bold text-dark m-0 fs-3">MOIT : 모임 기반 소셜 커뮤니티 플랫폼</h4>
-                        <p class="text-muted mt-2 mb-0">React SPA와 Spring Boot REST API 분리 설계로 완성한 고성능 풀스택 웹 서비스</p>
+                        <h4 class="fw-bold text-dark m-0 fs-2 tracking-tight">MOIT : 모임 기반 소셜 커뮤니티 플랫폼</h4>
+                        <p class="text-muted mt-2 mb-0 fs-6">React SPA와 Spring Boot REST API 분리 설계로 완성한 고성능 풀스택 웹 서비스</p>
                     </div>
-                    <div class="col-md-5 text-md-end text-start">
-                        <span class="badge bg-light text-primary border border-primary p-2 fs-6">
-                            👤 담당 파트: 후기 및 댓글 시스템 풀스택 전담 구현
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <span class="badge bg-light text-primary border border-primary-subtle p-2 px-3 rounded-pill fw-bold small">
+                            <i class="bi bi-person-check-fill me-1"></i> 후기기능 풀스택 전담
                         </span>
+                        <a href="https://moit-web-v3.duckdns.org/" target="_blank" class="btn-action-primary py-2 px-3 small">
+                            <span>Live MOIT</span> <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
                     </div>
                 </div>
 
                 <div class="row g-4">
-                    <!-- 좌측: 영상 & 깃허브 & 스택 -->
+                    <!-- 좌측: 비디오 & 링크 & 기술태그 -->
                     <div class="col-lg-5">
-                        <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm mb-3">
-                            <iframe src="https://www.youtube.com/embed/X1sHxoJ5mC0" title="Moit v3.0 video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <div class="ratio ratio-16x9 video-box mb-3">
+                            <iframe src="https://www.youtube.com/embed/X1sHxoJ5mC0" title="Moit v3.0 video" allowfullscreen></iframe>
                         </div>
-                        <a href="https://github.com/look-93/2026-tjoeun-projects/tree/5187efd404db54fd4d5b3f14bcbc769ce5f65fec/moit-v3" target="_blank" class="btn btn-primary w-100 fw-bold py-2">
-                            MOIT v3.0 GitHub 소스코드 보기 →
+
+                        <a href="https://github.com/look-93/2026-tjoeun-projects/tree/5187efd404db54fd4d5b3f14bcbc769ce5f65fec/moit-v3" target="_blank" class="btn-action-outline w-100 justify-content-center py-2 mb-4">
+                            <i class="bi bi-github"></i> MOIT v3.0 GitHub 소스코드 보기
                         </a>
                         
-                        <div class="mt-4 pt-3 border-top">
-                            <div class="fw-bold text-dark small mb-2">🛠️ v3.0 기술스택</div>
+                        <div class="p-3 bg-light rounded-4 border border-slate-200">
+                            <div class="fw-bold text-dark small mb-2"><i class="bi bi-stack me-1 text-primary"></i> v3.0 Core Stacks</div>
                             <div class="tech-grid">
-                                <div class="tech-item">Spring Boot</div>
-                                <div class="tech-item">JPA / MyBatis</div>
-                                <div class="tech-item">Redis</div>
-                                <div class="tech-item">React</div>
-                                <div class="tech-item">Redux-Saga</div>
-                                <div class="tech-item">Next.js</div>
-                                <div class="tech-item">Ant Design</div>
+                                <span class="tech-pill">Spring Boot</span>
+                                <span class="tech-pill">JPA / MyBatis</span>
+                                <span class="tech-pill">Redis</span>
+                                <span class="tech-pill">React</span>
+                                <span class="tech-pill">Redux-Saga</span>
+                                <span class="tech-pill">Next.js</span>
+                                <span class="tech-pill">Ant Design</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 우측: 주요 구현 기능 (빠진 항목 복원) & 트러블슈팅 -->
+                    <!-- 우측: 구현 기능 & 트러블슈팅 -->
                     <div class="col-lg-7">
-                        <!-- 주요 구현 기능 전체 복원 -->
-                        <div class="mb-4">
-                            <h6 class="fw-bold text-dark mb-2">📌 담당 핵심 구현 기능</h6>
-                            <ul class="list-unstyled text-secondary mb-0 ps-1" style="line-height: 1.8;">
-                                <li>• <strong>다중 이미지 & 모달 확대</strong>: 최대 5장 제한 프론트/백 검증 및 상세 페이지 이미지 확대 뷰어</li>
-                                <li>• <strong>계층형 댓글·대댓글</strong>: Self-Join 기반 구조 설계 및 작성자 본인 인증 보안 처리</li>
-                                <li>• <strong>작성 조건 및 중복 차단</strong>: 모임 종료 상태 검증 및 '1인 1후기' 중복 등록 백엔드 차단</li>
-                                <li>• <strong>자동 알림 스케줄러</strong>: 모임 종료 3일 후 후기 작성 유도 마이페이지 알림 자동 발송</li>
-                                <li>• <strong>관리자 제어 기능</strong>: 관리자 권한으로 전체 조회 및 부적절 게시물 숨김/삭제 권한 제어</li>
+                        <!-- 구현 기능 블록 -->
+                        <div class="feature-block mb-4">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <i class="bi bi-check2-circle text-primary fs-5"></i>
+                                <h6 class="fw-bold text-dark m-0 fs-6">담당 핵심 구현 기능</h6>
+                            </div>
+                            <ul class="feature-list">
+                                <li><strong>다중 이미지 업로드 및 검증</strong>: 최대 5장 제한 프론트/백 이중 유효성 검사 및 상세 모달 확대 뷰어</li>
+                                <li><strong>계층형 대댓글 아키텍처</strong>: Self-Join 구조 설계 및 토큰 기반의 작성자 본인 인증 인가 제어</li>
+                                <li><strong>작성 조건 및 중복 차단</strong>: 모임 종료 상태 검증 및 비즈니스 로직 기반 1인 1후기 등록 제어</li>
+                                <li><strong>자동화 알림 스케줄러</strong>: 모임 종료 3일 후 후기 작성을 유도하는 백그라운드 크론 알림 발송</li>
+                                <li><strong>운영자 어드민 권한 제어</strong>: 관리자 롤(Role) 기반 부적절 게시물 즉각 숨김/삭제 필터링</li>
                             </ul>
                         </div>
 
-                        <!-- 핵심 문제 해결 (Troubleshooting) -->
+                        <!-- 핵심 트러블슈팅 블록 -->
                         <div>
-                            <h6 class="fw-bold text-dark mb-3">💡 기술적 문제 해결 (Troubleshooting)</h6>
-                            
-                            <!-- Case 1 -->
-                            <div class="p-3 rounded-3 bg-light border-start border-4 border-primary mb-3">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <i class="bi bi-tools text-primary fs-5"></i>
+                                <h6 class="fw-bold text-dark m-0 fs-6">핵심 문제 해결 (Troubleshooting)</h6>
+                            </div>
+
+                            <!-- Problem 1 -->
+                            <div class="trouble-card">
                                 <div class="d-flex align-items-center gap-2 mb-1">
-                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2">문제</span>
-                                    <span class="fw-bold text-dark small">이미지 수정 시 DB 부하 및 불필요한 스토리지 I/O</span>
+                                    <span class="trouble-badge-prob">ISSUE</span>
+                                    <span class="fw-bold text-dark small">이미지 수정 시 전체 덮어쓰기로 인한 DB 부하 및 스토리지 I/O 낭비</span>
                                 </div>
-                                <div class="d-flex align-items-start gap-2">
-                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 mt-1">해결</span>
+                                <div class="d-flex align-items-start gap-2 mt-1">
+                                    <span class="trouble-badge-sol mt-1">SOL</span>
                                     <p class="text-secondary small mb-0">
-                                        기존 이미지 전체 삭제 후 재저장 대신, 기존/신규 데이터를 비교하여 <strong>[유지·삭제·추가] 대상을 분기 처리하는 Diff 로직</strong>을 구현해 변경된 데이터만 선별 반영함.
+                                        기존/신규 이미지 배열을 비교 분석하는 <strong>Diff 분기 로직(유지·삭제·추가)</strong>을 구축하여 실제 변경된 페이로드만 선별 저장하도록 개선.
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Case 2 -->
-                            <div class="p-3 rounded-3 bg-light border-start border-4 border-primary mb-3">
+                            <!-- Problem 2 -->
+                            <div class="trouble-card">
                                 <div class="d-flex align-items-center gap-2 mb-1">
-                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2">문제</span>
-                                    <span class="fw-bold text-dark small">계층형 대댓글 무한 중첩 및 비인가자 삭제 취약점</span>
+                                    <span class="trouble-badge-prob">ISSUE</span>
+                                    <span class="fw-bold text-dark small">계층형 대댓글 무한 중첩에 따른 UI 깨짐 및 비인가자 삭제 취약점</span>
                                 </div>
-                                <div class="d-flex align-items-start gap-2">
-                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 mt-1">해결</span>
+                                <div class="d-flex align-items-start gap-2 mt-1">
+                                    <span class="trouble-badge-sol mt-1">SOL</span>
                                     <p class="text-secondary small mb-0">
-                                        <strong>자기참조(Self-Join) 관계로 설계하되 깊이를 1-depth로 제한</strong>해 UI 깨짐을 방지하고, 본인 인증 토큰을 검증해 타인의 임의 삭제 시도를 원천 차단함.
+                                        Self-Join 관계 깊이를 <strong>1-Depth로 명시 제한</strong>하고, SecurityContext 토큰 유저 ID와 작성자 ID 일치 여부를 검증해 임의 변조 삭제를 원천 차단.
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Case 3 -->
-                            <div class="p-3 rounded-3 bg-light border-start border-4 border-primary">
+                            <!-- Problem 3 -->
+                            <div class="trouble-card">
                                 <div class="d-flex align-items-center gap-2 mb-1">
-                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2">문제</span>
-                                    <span class="fw-bold text-dark small">JPA 연관 데이터 조회 시 N+1 쿼리 반복 병목</span>
+                                    <span class="trouble-badge-prob">ISSUE</span>
+                                    <span class="fw-bold text-dark small">JPA 연관 관계 조회 시 N+1 반복 쿼리로 인한 응답 레이턴시 병목</span>
                                 </div>
-                                <div class="d-flex align-items-start gap-2">
-                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 mt-1">해결</span>
+                                <div class="d-flex align-items-start gap-2 mt-1">
+                                    <span class="trouble-badge-sol mt-1">SOL</span>
                                     <p class="text-secondary small mb-0">
-                                        기본 `FetchType.LAZY`를 유지한 채, 실제 표시에 필요한 데이터는 <strong><code>@EntityGraph</code>를 통한 패치 조인</strong>을 적용하여 수십 번의 서브쿼리를 단 1회로 최적화함.
+                                        지연 로딩(`LAZY`) 정책을 유지한 채, 조회 화면에 즉시 필요한 엔티티는 <strong><code>@EntityGraph</code>를 통한 패치 조인</strong>으로 묶어 수십 번의 서브쿼리를 단 1회로 최적화.
                                     </p>
                                 </div>
                             </div>
@@ -693,85 +919,91 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- 🚀 [아키텍처 발전사] MOIT v2.0 & v1.0 (2열 그리드) -->
+            <!-- 🚀 [아키텍처 진화 과정] MOIT v2.0 & v1.0 -->
             <!-- ========================================== -->
-            <div class="mb-5" data-aos="fade-up">
-                <div class="d-flex align-items-center gap-2 mb-3">
-                    <h5 class="fw-bold text-dark m-0">📐 MOIT 아키텍처 진화 과정 (v1.0 & v2.0)</h5>
-                    <span class="text-muted small">| 프로토타입에서 풀스택 분리까지의 발전사</span>
+            <div class="mb-5">
+                <div class="d-flex align-items-center gap-2 mb-4" data-aos="fade-up">
+                    <h5 class="fw-bold text-dark m-0 fs-4"><i class="bi bi-diagram-3 text-primary me-2"></i>MOIT 아키텍처 진화 과정</h5>
+                    <span class="text-muted small">| 프로토타입에서 풀스택 아키텍처 분리까지</span>
                 </div>
 
                 <div class="row g-4">
                     <!-- Moit v2.0 -->
-                    <div class="col-lg-6">
-                        <div class="card-custom h-100 p-4 border bg-white">
-                            <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm mb-3">
-                                <iframe src="https://www.youtube.com/embed/vFFOV-ELUPY" title="Moit v2.0 video" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge bg-primary">Version 2.0</span>
-                                <a href="https://github.com/look-93/2026-tjoeun-projects/tree/5187efd404db54fd4d5b3f14bcbc769ce5f65fec/moit-v2" target="_blank" class="small text-primary fw-bold text-decoration-none">GitHub 보기 →</a>
-                            </div>
-                            <h6 class="fw-bold text-dark fs-5 mb-2">AI 융합 및 다중 조건 동적 필터링</h6>
-                            
-                            <!-- v2.0 빠진 기능 전체 복원 -->
-                            <ul class="list-unstyled text-secondary small mb-3 ps-1" style="line-height: 1.7;">
-                                <li>• <strong>후기 검색 & 별점 분포</strong>: 키워드 검색 및 사용자 별점 분포 시각화 조회</li>
-                                <li>• <strong>정렬 및 좋아요</strong>: 최신순·평점순 정렬 및 개별 좋아요 토글 인터랙션</li>
-                                <li>• <strong>AI 후기 요약</strong>: OpenAI API 연동 후기 데이터 분석 및 개설자 리포트</li>
-                                <li>• <strong>콘텐츠 사전 검증</strong>: OpenAI Moderation API 연동 비방·욕설 필터링</li>
-                            </ul>
-                            
-                            <!-- 트러블슈팅 -->
-                            <div class="p-3 rounded-3 bg-light border-start border-3 border-primary mb-3">
-                                <div class="fw-bold small text-dark mb-1">🛠️ 트러블슈팅: 다중 조건 동적 조회 & AI 권한 제어</div>
-                                <p class="text-secondary small mb-0">
-                                    검색어·상태·정렬 등 <strong>복합 파라미터 분기 구조를 체계화</strong>하여 쿼리 누락을 방지하고, <strong>세션과 모임 개설자(Host ID) 일치 여부를 검증</strong>해 개설자에게만 AI 리포트가 노출되도록 권한(RBAC)을 제어함.
-                                </p>
+                    <div class="col-lg-6" id="version-v2" data-aos="fade-up">
+                        <div class="sub-project-card">
+                            <div>
+                                <div class="ratio ratio-16x9 video-box mb-3">
+                                    <iframe src="https://www.youtube.com/embed/vFFOV-ELUPY" title="Moit v2.0 video" allowfullscreen></iframe>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge-pill-soft">Version 2.0</span>
+                                    <a href="https://github.com/look-93/2026-tjoeun-projects/tree/5187efd404db54fd4d5b3f14bcbc769ce5f65fec/moit-v2" target="_blank" class="small text-primary fw-bold text-decoration-none">
+                                        GitHub 코드 <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2 fs-5">AI 융합 & 다중 조건 동적 필터링</h5>
+                                <p class="text-muted small mb-3">Spring Boot + Thymeleaf SSR 기반 웹 구조에 OpenAI API를 연동한 인텔리전스 시스템</p>
+
+                                <ul class="feature-list mb-3">
+                                    <li><strong>후기 검색 & 별점 분포</strong>: 키워드 검색 및 사용자 별점 통계 시각화</li>
+                                    <li><strong>정렬 및 좋아요 토글</strong>: 최신순·평점순 정렬과 실시간 추천 카운팅</li>
+                                    <li><strong>AI 후기 요약</strong>: OpenAI API 연동 모임 후기 감성 분석 및 리포트 제공</li>
+                                    <li><strong>콘텐츠 사전 필터링</strong>: Moderation API 연동 비방·욕설 자동 블라인드</li>
+                                </ul>
+
+                                <div class="trouble-card mb-3">
+                                    <div class="fw-bold small text-dark mb-1"><i class="bi bi-lightbulb text-warning me-1"></i> 트러블슈팅: 동적 쿼리 & 권한 격리</div>
+                                    <p class="text-secondary small mb-0">
+                                        복합 파라미터 분기 쿼리를 표준화하고, 세션 유저와 모임 주최자(Host ID) 일치 여부를 검증하여 <strong>AI 요약 리포트 열람 권한(RBAC)</strong>을 안전하게 제어.
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="tech-grid">
-                                <div class="tech-item small">Spring Boot</div>
-                                <div class="tech-item small">Thymeleaf</div>
-                                <div class="tech-item small">Oracle</div>
-                                <div class="tech-item small">OpenAI API</div>
+                            <div class="tech-grid pt-3 border-top">
+                                <span class="tech-pill">Spring Boot</span>
+                                <span class="tech-pill">Thymeleaf</span>
+                                <span class="tech-pill">Oracle</span>
+                                <span class="tech-pill">OpenAI API</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Moit v1.0 -->
-                    <div class="col-lg-6">
-                        <div class="card-custom h-100 p-4 border bg-white">
-                            <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm mb-3">
-                                <iframe src="https://www.youtube.com/embed/pyTIHHSDAqs" title="Moit v1.0 video" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge bg-secondary">Version 1.0</span>
-                                <a href="https://github.com/look-93/2026-tjoeun-projects/tree/5187efd404db54fd4d5b3f14bcbc769ce5f65fec/moit-v1" target="_blank" class="small text-secondary fw-bold text-decoration-none">GitHub 보기 →</a>
-                            </div>
-                            <h6 class="fw-bold text-dark fs-5 mb-2">Spring MVC 패턴 기반 후기 CRUD 정립</h6>
-                            
-                            <!-- v1.0 빠진 기능 복원 -->
-                            <ul class="list-unstyled text-secondary small mb-3 ps-1" style="line-height: 1.7;">
-                                <li>• <strong>후기 CRUD 기초 구현</strong>: 모임 후기 작성, 조회, 수정, 삭제 핵심 로직 구축</li>
-                                <li>• <strong>마이페이지 관리</strong>: 본인 작성 후기 목록 관리 및 공개/비공개 토글 기능</li>
-                                <li>• <strong>MyBatis 영속성 처리</strong>: MySQL 연동 및 SQL 매핑 기초 데이터 파이프라인</li>
-                            </ul>
-                            
-                            <!-- 트러블슈팅 -->
-                            <div class="p-3 rounded-3 bg-light border-start border-3 border-secondary mb-3">
-                                <div class="fw-bold small text-dark mb-1">🛠️ 트러블슈팅: 모놀리식 MVC 계층 분리 및 흐름 정립</div>
-                                <p class="text-secondary small mb-0">
-                                    초기 로직 집중 현상을 해결하기 위해 <strong>[Controller - Service - Mapper]로 책임을 엄격히 분리</strong>하고, 요청 라이프사이클을 단계별로 파악하여 유지보수성을 확보함.
-                                </p>
+                    <div class="col-lg-6" id="version-v1" data-aos="fade-up" data-aos-delay="100">
+                        <div class="sub-project-card">
+                            <div>
+                                <div class="ratio ratio-16x9 video-box mb-3">
+                                    <iframe src="https://www.youtube.com/embed/pyTIHHSDAqs" title="Moit v1.0 video" allowfullscreen></iframe>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge-pill-subtle">Version 1.0</span>
+                                    <a href="https://github.com/look-93/2026-tjoeun-projects/tree/5187efd404db54fd4d5b3f14bcbc769ce5f65fec/moit-v1" target="_blank" class="small text-secondary fw-bold text-decoration-none">
+                                        GitHub 코드 <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2 fs-5">Spring MVC 패턴 기반 후기 CRUD 정립</h5>
+                                <p class="text-muted small mb-3">전통적인 Spring 모놀리식 구조와 MyBatis 영속성 프레임워크를 활용한 웹 개발 기초 확립</p>
+
+                                <ul class="feature-list mb-3">
+                                    <li><strong>후기 CRUD 기초 구현</strong>: 모임 후기 작성, 조회, 수정, 삭제 핵심 로직 구축</li>
+                                    <li><strong>마이페이지 관리</strong>: 본인 작성 후기 목록 관리 및 공개/비공개 전환 기능</li>
+                                    <li><strong>MyBatis 영속성 매핑</strong>: MySQL 연동 및 SQL 매퍼 기반 데이터 파이프라인 정립</li>
+                                </ul>
+
+                                <div class="trouble-card mb-3">
+                                    <div class="fw-bold small text-dark mb-1"><i class="bi bi-lightbulb text-warning me-1"></i> 트러블슈팅: MVC 3계층 책임 분리</div>
+                                    <p class="text-secondary small mb-0">
+                                        Controller에 집중되던 비즈니스 로직을 <strong>Service 및 Mapper 계층으로 명확히 분리</strong>하여 결합도를 낮추고 유지보수성과 확장성을 확보.
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="tech-grid">
-                                <div class="tech-item small">Spring Framework</div>
-                                <div class="tech-item small">JSP</div>
-                                <div class="tech-item small">MyBatis</div>
-                                <div class="tech-item small">MySQL</div>
-                                <div class="tech-item small">Ajax</div>
+                            <div class="tech-grid pt-3 border-top">
+                                <span class="tech-pill">Spring Framework</span>
+                                <span class="tech-pill">JSP</span>
+                                <span class="tech-pill">MyBatis</span>
+                                <span class="tech-pill">MySQL</span>
+                                <span class="tech-pill">Ajax</span>
                             </div>
                         </div>
                     </div>
@@ -781,37 +1013,36 @@
             <!-- ========================================== -->
             <!-- ☕ [SUB PROJECT] Java 콘솔 뱅킹 시스템 -->
             <!-- ========================================== -->
-            <div id="version-bank" class="card-custom border bg-white" data-aos="fade-up">
+            <div id="version-bank" class="card-custom mb-4" data-aos="fade-up">
                 <div class="row align-items-center g-4">
-                    <div class="col-lg-4">
-                        <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm">
-                            <iframe src="https://www.youtube.com/embed/M0w0pSloCCY" title="Bank Project video" frameborder="0" allowfullscreen></iframe>
+                    <div class="col-lg-5">
+                        <div class="ratio ratio-16x9 video-box">
+                            <iframe src="https://www.youtube.com/embed/M0w0pSloCCY" title="Bank Project video" allowfullscreen></iframe>
                         </div>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <span class="badge bg-dark">Java Console (개인 100%)</span>
-                            <span class="text-muted small fw-bold">객체 지향 프로그래밍 기초</span>
+                            <span class="badge bg-dark rounded-pill px-3 py-1 fw-bold small">Java Console (100% 개인)</span>
+                            <span class="text-muted small fw-bold">객체 지향 프로그래밍(OOP) 기초</span>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">콘솔 기반 뱅킹 시스템 (Bank Project)</h5>
+                        <h5 class="fw-bold text-dark mb-2 fs-5">콘솔 기반 뱅킹 관리 시스템 (Bank Project)</h5>
                         
-                        <!-- Bank 프로젝트 단계별 기능 복원 -->
-                        <ul class="list-unstyled text-secondary small mb-3 ps-1" style="line-height: 1.7;">
-                            <li>• <strong>V1 (단일 변수)</strong>: Scanner 기본 입출력과 단일 계좌 관리</li>
-                            <li>• <strong>V2 (고정 배열)</strong>: 최대 3개 계좌 관리 및 ID/Password 기준 계좌 검색</li>
-                            <li>• <strong>V3 (DTO + List)</strong>: <code>BankDto</code> 및 동적 <code>ArrayList</code> 기반 계좌 CRUD 완성</li>
-                            <li>• <strong>입출금 & 인증</strong>: 잔액 검증 후 입·출금 트랜잭션 반영 및 로그인 인증 로직</li>
+                        <ul class="feature-list mb-3">
+                            <li><strong>V1 (단일 변수)</strong>: Scanner 기본 콘솔 I/O 및 단일 계좌 관리 구조 실습</li>
+                            <li><strong>V2 (고정 배열)</strong>: 고정 크기 배열 기반 다중 계좌 관리 및 ID/PW 검색 검증</li>
+                            <li><strong>V3 (DTO + List)</strong>: <code>BankDto</code> 및 컬렉션 <code>ArrayList</code> 기반 계좌 CRUD 고도화</li>
+                            <li><strong>입출금 트랜잭션</strong>: 잔액 음수 체크 및 출금 한도 검증 로직 구현</li>
                         </ul>
 
-                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 pt-2 border-top">
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 pt-3 border-top">
                             <div class="tech-grid">
-                                <div class="tech-item small">Java</div>
-                                <div class="tech-item small">Collections (ArrayList)</div>
-                                <div class="tech-item small">DTO Pattern</div>
-                                <div class="tech-item small">Console I/O</div>
+                                <span class="tech-pill">Java</span>
+                                <span class="tech-pill">Collections</span>
+                                <span class="tech-pill">DTO Pattern</span>
+                                <span class="tech-pill">Console I/O</span>
                             </div>
-                            <a href="https://github.com/hahy0117/2026-AI-FULLSTACK/tree/035c0884e3eee5efb3171b271bb27a6f7d4206bb/track003_java/bankproject" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3 fw-bold">
-                                Bank Project GitHub 소스코드 →
+                            <a href="https://github.com/hahy0117/2026-AI-FULLSTACK/tree/035c0884e3eee5efb3171b271bb27a6f7d4206bb/track003_java/bankproject" target="_blank" class="btn-action-outline">
+                                <i class="bi bi-github"></i> Bank 소스코드 보기
                             </a>
                         </div>
                     </div>
@@ -825,7 +1056,7 @@
     <section id="contact" class="contact-section-ref" data-aos="fade-up">
         <div class="container">
             <span class="contact-tag">CONTACT</span>
-            <h3 class="contact-heading">프로젝트를 함께 이끌어갈 파트너를 찾고 계신가요?</h3>
+            <h3 class="contact-heading">프로젝트를 함께 이끌어갈 동료를 찾고 계신가요?</h3>
             
             <div>
                 <a href="mailto:hahy0117@gmail.com" class="huge-email-display">
@@ -835,18 +1066,16 @@
 
             <div class="row g-4 mt-2">
                 <div class="col-md-6">
-                    <p class="contact-desc-text">
-                        어떤 환경이든 빠르게 흡수하고 적응하여 실무에 곧바로 힘이 되는 개발자가 되겠습니다.
+                    <p class="text-slate-400 mb-0" style="color: #94a3b8; line-height: 1.8;">
+                        어떤 환경이든 빠르게 흡수하고 적응하여 실무에 곧바로 힘이 되는 개발자가 되겠습니다.<br>
                         함께 고민하고 성장할 수 있는 협업 제안을 언제나 환영합니다.
                     </p>
                 </div>
                 <div class="col-md-6 d-flex flex-column justify-content-between align-items-md-end align-items-start">
-                    <p class="contact-desc-text">궁금한 내용이 있다면 편하게 연락 주세요!</p>
+                    <p class="text-slate-400 mb-0" style="color: #94a3b8;">궁금한 내용이 있다면 편하게 연락 주세요!</p>
                     <a href="mailto:hahy0117@gmail.com" class="direct-mail-btn mt-3">
                         메일 보내기 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
-                        </svg>
+                        <i class="bi bi-arrow-right-short fs-4"></i>
                     </a>
                 </div>
             </div>
@@ -858,15 +1087,17 @@
         <p class="m-0">© 2026 Hyewon Ha. All rights reserved.</p>
     </footer>
 
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // AOS 초기화
+        // AOS 애니메이션 초기화
         AOS.init({
-            duration: 800,
+            duration: 750,
             once: true,
-            offset: 100
+            offset: 80
         });
 
         // 인트로 애니메이션 제어
@@ -874,32 +1105,40 @@
         const line = document.getElementById('loading-line');
 
         setTimeout(() => {
-            line.style.width = '100%';
-        }, 600); 
+            if(line) line.style.width = '100%';
+        }, 300); 
 
         setTimeout(() => {
-            intro.classList.add('fade-out');
-            setTimeout(() => {
-                intro.style.display = 'none';
-                document.body.classList.remove('no-scroll');
-            }, 800);
-        }, 2000); 
+            if(intro) {
+                intro.classList.add('fade-out');
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                    document.body.classList.remove('no-scroll');
+                }, 800);
+            }
+        }, 1800); 
 
-        // 상단 드롭다운 Project 클릭 시 해당 버전 카드로 부드럽게 스크롤 이동하는 스크립트
-        document.querySelectorAll('.project-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
+        // 내비게이션 및 드롭다운 스크롤 트리거 로직
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || targetId === '') return;
+
+                const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // 상단 내비게이션 바 높이를 고려해 여유 있게 스크롤 위치 보정
-                    const headerHeight = 90;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                    e.preventDefault();
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
+                    // 모바일 햄버거 메뉴 열려있으면 닫기
+                    const navbarCollapse = document.getElementById('mynavbar');
+                    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                        if (bsCollapse) bsCollapse.hide();
+                    }
+
+                    // 부드러운 스크롤 이동
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
